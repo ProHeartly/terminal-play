@@ -5,6 +5,8 @@ from textual.containers import Center, Middle
 import pyfiglet
 from time import sleep
 
+# I'm proud of myself after making this effect :D btw don't listen to startup.mov. PLEASE DON'T. I laughed at that thing for 1 hours straight.
+
 class WelcomeScreen(Screen):
 
     def compose(self) -> ComposeResult:
@@ -23,7 +25,8 @@ class WelcomeScreen(Screen):
 
         self.set_timer(1, self.start_ani)
         
-    
+    # this was the only solution that I could think of, for delayed animation start up.. Please don't judge meee
+
     def start_ani(self) -> None:
         self.timer = self.set_interval(0.08, self.tick)
 

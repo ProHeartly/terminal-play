@@ -10,7 +10,7 @@ from screens.welcome import WelcomeScreen
 from screens.setup import SetupScreen
 from screens.player import PlayerScreen
 
-
+# I just searched what what library I may need :D.. I guess most of them are not even needed
 
 class TerminalPlayer(App):
 
@@ -62,7 +62,7 @@ class TerminalPlayer(App):
             self.songs = data.get("songs", [])
             self.switch_screen("library")
         else:
-            self.notify("The Devil of Dark has summoned you..")
+            self.notify("BAUNA GOD has summoned you..")
             self.switch_screen("setup")
 
 
