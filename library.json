@@ -1,0 +1,307 @@
+{
+    "directories": [
+        "D:/songs"
+    ],
+    "songs": [
+        {
+            "title": "505",
+            "artist": "Unknown",
+            "duration": "04:13",
+            "path": "D:\\songs\\505.mp3"
+        },
+        {
+            "title": "a cover (& trip) to the Ends of the Earth",
+            "artist": "Unknown",
+            "duration": "03:20",
+            "path": "D:\\songs\\a cover (& trip) to the Ends of the Earth.mp3"
+        },
+        {
+            "title": "Aandhii - K Hunthyo Hola Hami Sangai Bhayeko Bhaye_ [Official Lyric Video]",
+            "artist": "Unknown",
+            "duration": "05:54",
+            "path": "D:\\songs\\Aandhii - K Hunthyo Hola Hami Sangai Bhayeko Bhaye_ [Official Lyric Video].mp3"
+        },
+        {
+            "title": "Baarishein (Acoustic)",
+            "artist": "Unknown",
+            "duration": "03:29",
+            "path": "D:\\songs\\Baarishein (Acoustic).mp3"
+        },
+        {
+            "title": "back to friends",
+            "artist": "Unknown",
+            "duration": "03:19",
+            "path": "D:\\songs\\back to friends.mp3"
+        },
+        {
+            "title": "blue",
+            "artist": "Unknown",
+            "duration": "03:34",
+            "path": "D:\\songs\\blue.mp3"
+        },
+        {
+            "title": "Bujideuna",
+            "artist": "Unknown",
+            "duration": "02:34",
+            "path": "D:\\songs\\Bujideuna.mp3"
+        },
+        {
+            "title": "Chaand Baaliyan - Aditya A. (Official Video)",
+            "artist": "Unknown",
+            "duration": "01:43",
+            "path": "D:\\songs\\Chaand Baaliyan - Aditya A. (Official Video).mp3"
+        },
+        {
+            "title": "Co2 (Acoustic)",
+            "artist": "Unknown",
+            "duration": "02:47",
+            "path": "D:\\songs\\Co2 (Acoustic).mp3"
+        },
+        {
+            "title": "Dekha Hi Nahi",
+            "artist": "Unknown",
+            "duration": "03:41",
+            "path": "D:\\songs\\Dekha Hi Nahi.mp3"
+        },
+        {
+            "title": "Diet Mountain Dew",
+            "artist": "Unknown",
+            "duration": "03:42",
+            "path": "D:\\songs\\Diet Mountain Dew.mp3"
+        },
+        {
+            "title": "End of Beginning",
+            "artist": "Unknown",
+            "duration": "02:39",
+            "path": "D:\\songs\\End of Beginning.mp3"
+        },
+        {
+            "title": "Finding Her",
+            "artist": "Unknown",
+            "duration": "03:09",
+            "path": "D:\\songs\\Finding Her.mp3"
+        },
+        {
+            "title": "Firfirey",
+            "artist": "Unknown",
+            "duration": "04:16",
+            "path": "D:\\songs\\Firfirey.mp3"
+        },
+        {
+            "title": "From The Start",
+            "artist": "Unknown",
+            "duration": "02:49",
+            "path": "D:\\songs\\From The Start.mp3"
+        },
+        {
+            "title": "Gul",
+            "artist": "Unknown",
+            "duration": "03:37",
+            "path": "D:\\songs\\Gul.mp3"
+        },
+        {
+            "title": "Hami",
+            "artist": "Unknown",
+            "duration": "03:53",
+            "path": "D:\\songs\\Hami.mp3"
+        },
+        {
+            "title": "Heeriye (feat. Arijit Singh)",
+            "artist": "Unknown",
+            "duration": "03:14",
+            "path": "D:\\songs\\Heeriye (feat. Arijit Singh).mp3"
+        },
+        {
+            "title": "I Love You So",
+            "artist": "Unknown",
+            "duration": "02:40",
+            "path": "D:\\songs\\I Love You So.mp3"
+        },
+        {
+            "title": "I Thought I Saw Your Face Today",
+            "artist": "Unknown",
+            "duration": "02:50",
+            "path": "D:\\songs\\I Thought I Saw Your Face Today.mp3"
+        },
+        {
+            "title": "I Wanna Be Yours",
+            "artist": "Unknown",
+            "duration": "03:04",
+            "path": "D:\\songs\\I Wanna Be Yours.mp3"
+        },
+        {
+            "title": "I've got my eye on you.",
+            "artist": "Unknown",
+            "duration": "03:34",
+            "path": "D:\\songs\\I've got my eye on you..mp3"
+        },
+        {
+            "title": "Inaam",
+            "artist": "Unknown",
+            "duration": "04:17",
+            "path": "D:\\songs\\Inaam.mp3"
+        },
+        {
+            "title": "Jaanu Naa",
+            "artist": "Unknown",
+            "duration": "03:52",
+            "path": "D:\\songs\\Jaanu Naa.mp3"
+        },
+        {
+            "title": "Kasoor (Acoustic) - Prateek Kuhad  Official Lyric Video",
+            "artist": "Unknown",
+            "duration": "03:33",
+            "path": "D:\\songs\\Kasoor (Acoustic) - Prateek Kuhad  Official Lyric Video.mp3"
+        },
+        {
+            "title": "Kehne Lagaa",
+            "artist": "Unknown",
+            "duration": "04:23",
+            "path": "D:\\songs\\Kehne Lagaa.mp3"
+        },
+        {
+            "title": "Lailaah",
+            "artist": "Unknown",
+            "duration": "03:18",
+            "path": "D:\\songs\\Lailaah.mp3"
+        },
+        {
+            "title": "Lamhey - Anubha Bajaj (Official Music Video)",
+            "artist": "Unknown",
+            "duration": "02:29",
+            "path": "D:\\songs\\Lamhey - Anubha Bajaj (Official Music Video).mp3"
+        },
+        {
+            "title": "Line Without a Hook",
+            "artist": "Unknown",
+            "duration": "04:09",
+            "path": "D:\\songs\\Line Without a Hook.mp3"
+        },
+        {
+            "title": "Muskuraye",
+            "artist": "Unknown",
+            "duration": "02:53",
+            "path": "D:\\songs\\Muskuraye.mp3"
+        },
+        {
+            "title": "No One Noticed",
+            "artist": "Unknown",
+            "duration": "03:56",
+            "path": "D:\\songs\\No One Noticed.mp3"
+        },
+        {
+            "title": "Ordinary",
+            "artist": "Unknown",
+            "duration": "03:07",
+            "path": "D:\\songs\\Ordinary.mp3"
+        },
+        {
+            "title": "Ratiyaan",
+            "artist": "Unknown",
+            "duration": "02:55",
+            "path": "D:\\songs\\Ratiyaan.mp3"
+        },
+        {
+            "title": "Riptide",
+            "artist": "Unknown",
+            "duration": "03:24",
+            "path": "D:\\songs\\Riptide.mp3"
+        },
+        {
+            "title": "Sahi Ho",
+            "artist": "Unknown",
+            "duration": "02:57",
+            "path": "D:\\songs\\Sahi Ho.mp3"
+        },
+        {
+            "title": "Sailor Song (First Draft 4.29.24)",
+            "artist": "Unknown",
+            "duration": "03:42",
+            "path": "D:\\songs\\Sailor Song (First Draft 4.29.24).mp3"
+        },
+        {
+            "title": "Sapana Ko Mayalu",
+            "artist": "Unknown",
+            "duration": "04:07",
+            "path": "D:\\songs\\Sapana Ko Mayalu.mp3"
+        },
+        {
+            "title": "Sathi",
+            "artist": "Unknown",
+            "duration": "03:41",
+            "path": "D:\\songs\\Sathi.mp3"
+        },
+        {
+            "title": "Show Me Love",
+            "artist": "Unknown",
+            "duration": "02:57",
+            "path": "D:\\songs\\Show Me Love.mp3"
+        },
+        {
+            "title": "Sitaara",
+            "artist": "Unknown",
+            "duration": "03:02",
+            "path": "D:\\songs\\Sitaara.mp3"
+        },
+        {
+            "title": "Soldier, Poet, King",
+            "artist": "Unknown",
+            "duration": "02:45",
+            "path": "D:\\songs\\Soldier, Poet, King.mp3"
+        },
+        {
+            "title": "Somewhere Only We Know",
+            "artist": "Unknown",
+            "duration": "03:57",
+            "path": "D:\\songs\\Somewhere Only We Know.mp3"
+        },
+        {
+            "title": "Teenage Dream",
+            "artist": "Unknown",
+            "duration": "02:58",
+            "path": "D:\\songs\\Teenage Dream.mp3"
+        },
+        {
+            "title": "Thamana Haat",
+            "artist": "Unknown",
+            "duration": "03:10",
+            "path": "D:\\songs\\Thamana Haat.mp3"
+        },
+        {
+            "title": "Timi Bhayea Kafi (From Rammita Koo Pirati)",
+            "artist": "Unknown",
+            "duration": "03:19",
+            "path": "D:\\songs\\Timi Bhayea Kafi (From Rammita Koo Pirati).mp3"
+        },
+        {
+            "title": "Tumhare aane se  Official video  Ashu Shukla",
+            "artist": "Unknown",
+            "duration": "03:33",
+            "path": "D:\\songs\\Tumhare aane se  Official video  Ashu Shukla.mp3"
+        },
+        {
+            "title": "we fell in love in october",
+            "artist": "Unknown",
+            "duration": "03:04",
+            "path": "D:\\songs\\we fell in love in october.mp3"
+        },
+        {
+            "title": "Woh",
+            "artist": "Unknown",
+            "duration": "03:14",
+            "path": "D:\\songs\\Woh.mp3"
+        },
+        {
+            "title": "Yes to Heaven",
+            "artist": "Unknown",
+            "duration": "03:17",
+            "path": "D:\\songs\\Yes to Heaven.mp3"
+        },
+        {
+            "title": "Zulfein",
+            "artist": "Unknown",
+            "duration": "03:18",
+            "path": "D:\\songs\\Zulfein.mp3"
+        }
+    ]
+}

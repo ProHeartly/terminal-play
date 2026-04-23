@@ -1,0 +1,183 @@
+
+Screen {
+    align: center middle;
+    background: #121212;
+}
+
+
+#welcome-text {
+    width: auto;
+    height: auto;
+    color: #bc13fe; 
+    text-style: bold;
+    content-align: center middle;
+}
+
+
+#nav-rail {
+    width: 28;
+    height: 100%;
+    background: $boost;
+    border-right: solid gold;
+    padding: 1 2;
+}
+
+.nav-header {
+    color: gold;
+    text-style: bold;
+    margin-bottom: 2;
+    content-align: center middle;
+}
+
+.nav-item {
+    width: 100%;
+    margin-bottom: 1;
+    border: none;
+}
+
+#workspace {
+    padding: 2 4;
+}
+
+.h1 {
+    color: gold;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+#browser {
+    height: 1fr;
+    border: tall $accent;
+    background: $surface;
+}
+
+#path-queue {
+    height: 7;
+    border: panel $primary;
+    background: #1e1e1e;
+}
+
+#action-group {
+    height: auto;
+    align: right middle;
+    margin-top: 2;
+}
+
+
+#player-container {
+    align: center middle;
+    width: 100%;
+    height: 100%;
+    padding: 1 2;
+    background: $surface;
+}
+
+#art-container {
+    align: center middle;
+    height: 40%;
+    border: double $accent;
+    margin-bottom: 1;
+}
+
+#big-art {
+    content-align: center middle;
+    color: $accent;
+    text-style: bold;
+}
+
+#song-title {
+    text-align: center;
+    width: 100%;
+    height: 3;
+    color: gold;
+    text-style: bold;
+    border-bottom: round gray;
+}
+
+#timeline-wrapper {
+    height: auto;
+    margin: 1 0;
+    align: center middle;
+}
+
+#timeline-info {
+    height: 3;
+    align: center middle;
+}
+
+#timeline-slider {
+    width: 60%;
+    margin: 0 2;
+}
+
+#start-time, #end-time {
+    width: 7;
+    text-style: bold;
+    color: $accent;
+}
+
+#button-row {
+    height: 5;
+    align: center middle;
+    border-top: tall $primary;
+    margin-top: 1;
+}
+
+#vol-section {
+    width: 25%;
+    align: left middle;
+}
+
+#vol-slider {
+    width: 25;
+}
+
+#controls-section {
+    width: 50%;
+    align: center middle;
+}
+
+#controls-section Button {
+    margin: 0 1;
+    min-width: 8;
+}
+
+#next-section {
+    width: 25%;
+    align: right middle;
+}
+
+#next-section Label {
+    margin-right: 1;
+    color: gray;
+}
+
+#go-back {
+    margin-top: 1;
+    width: 100%;
+}
+
+Button:hover {
+    tint: white 10%;
+}
+
+Slider > .slider--handle {
+    color: gold;
+}
+
+#path-input {
+    margin: 1 0;
+    border: tall $accent;
+}
+
+#path-queue-container {
+    height: 1fr;
+    margin-top: 1;
+    border: double $panel;
+    background: $boost;
+}
+
+#cmd-add {
+    width: 100%;
+    margin-bottom: 2;
+}
