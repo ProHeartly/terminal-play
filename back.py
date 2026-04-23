@@ -1,18 +1,19 @@
 import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide' # I didn't want to see that pygame message..
 import pygame
 import json
 import random
 from pathlib import Path
-from mutagen.mp3 import MP3
-from mutagen.easyid3 import EasyID3
+import mutagen
+
+# I hope I utilized the imports.. I will fix in future updates if I didn't
 
 class SongLibrary:
     def __init__(self, lib_file="library.json"):
         self.lib_file = lib_file
-        self.exts = {".mp3", ".wav", ".ogg", ".flac"}
+        self.exts = {".mp3", ".wav", ".ogg", ".flac"} # Any other audio formats that are used??? (and supported by the library)
 
-    def exists(self) -> bool:
+    def exists(self) -> bool: # CAN IT CHECK MY EXISTENTIAL CRISIS???
         data = self.readlib()
 
         if (data is not None) and (len(data.get("songs", [])) > 0):
@@ -37,17 +38,19 @@ class SongLibrary:
             p = Path(folder)
             if not p.exists():
                 continue
-                
+            
+            # ABOUT the p.rglob("*").. for those who don't know what it does.. I'm one of you ;-;  - suggested by my CS teacher btw, he said TRUST ME
             for fp in p.rglob("*"):
                 if fp.suffix.lower() in self.exts:
                     try:
-                        tag = MP3(fp, ID3=EasyID3)
-                        name = str(tag.get("title", [fp.stem])[0])
-                        who = str(tag.get("artist", ["Unknown"])[0])
-                        dur = self.to_mmss(tag.info.length)
+                        audio = mutagen.File(fp, easy=True)
+                        name = str(audio.get("title", [fp.stem])[0])
+                        artist_list = audio.get("artist", ["Unknown"])
+                        who = str(artist_list[0]) if artist_list else "Unknown"
+                        dur = self.to_mmss(audio.info.length)
                     except Exception:
                         name = fp.stem
-                        who = "Unknown"
+                        who = "Unknown" # unknown like me ;-;.. Btw suggest some cool nickname instead of unknown.. THIS SOUNDS SO LAMEE
                         dur = "??:??"
 
                     found.append({
@@ -73,7 +76,7 @@ class SongLibrary:
             return random.sample(data["songs"], min(n, len(data["songs"])))
         return []
 
-class Player:
+class Player: # Playerrrr don't mind about the boring ahhhhhh name ;-;
     def __init__(self):
         pygame.mixer.init()
         self.loaded = None
@@ -81,12 +84,18 @@ class Player:
         self.total_len = 0.0
         self.seek_offset = 0.0
 
+    # I HAD A WHOLE BREAK DOWN FIXING; HeaderNotFoundError: can't sync to MPEG frame
+
     def load(self, path):
         if os.path.exists(path):
-            pygame.mixer.music.load(path)
-            self.loaded = path
-            self.total_len = MP3(path).info.length
-            return True
+            try:
+                pygame.mixer.music.load(path)
+                self.loaded = path
+                audio = mutagen.File(path)
+                self.total_len = audio.info.length if audio is not None else 0.0
+                return True
+            except Exception:
+                return False
         return False
     
     def play(self) -> None:

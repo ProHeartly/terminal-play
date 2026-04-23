@@ -2,6 +2,8 @@ from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Header, DataTable, Footer
 
+# verse 1: One of the easiest screen that I made... (FOR NOW **FORESHADOWING NEW UPDATES**)
+
 class LibraryScreen(Screen):
     def compose(self) -> ComposeResult:
         yield Header()
@@ -21,7 +23,6 @@ class LibraryScreen(Screen):
             )
 
     def on_data_table_row_selected(self, event: DataTable.RowSelected) -> None:
-        from screens.player import PlayerScreen
         idx = int(event.row_key.value)
         self.app.play_song(idx)
         self.app.switch_screen("player")

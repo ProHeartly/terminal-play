@@ -21,7 +21,7 @@ class TerminalPlayer(App):
         self.audio = Player()
         self.songs = []
         self.cur_idx = 0
-        self.install_screen(WelcomeScreen(), name="welcome")
+        self.install_screen(WelcomeScreen(), name="welcome") # FINALLY THE AI SUGGESTED SOMETHING GOOD... "ONLY USED AI FOR REFERENCE ;-;"
         self.install_screen(LibraryScreen(), name="library")
         self.install_screen(PlayerScreen(), name="player")
         self.install_screen(SetupScreen(), name="setup")

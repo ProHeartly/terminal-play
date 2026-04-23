@@ -4,12 +4,14 @@ from textual.widgets import Header, Footer, Button, Static, Label, Switch
 from textual_slider import Slider
 from textual.containers import Vertical, Horizontal
 
+# Verse 1: I had fun making this.. I experimented with different style, color combination and came to like the current one.. (IT WILL HAVE UPDATE IN FUTURE)
+
 class PlayerScreen(Screen):
     def compose(self) -> ComposeResult:
         yield Header()
         with Vertical(id="player-container"):
             with Horizontal(id="art-container"):
-                yield Static("", id="big-art")
+                yield Static("", id="big-art") # I wanted to add like some media inside of this.. I will add in some future update ;-;
 
             yield Static("", id="song-title")
 
@@ -107,3 +109,5 @@ class PlayerScreen(Screen):
 
             if event.slider.has_focus:
                 self.app.audio.seek(target)
+
+# WAIT!! did u acctually read all the code?? and what are you even doing here?
