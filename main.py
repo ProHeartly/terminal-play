@@ -14,7 +14,7 @@ from screens.player import PlayerScreen
 
 class TerminalPlayer(App):
 
-    CSS_PATH = "style.tcss"
+    CSS_PATH = "style.tcss" # I'm just guessing the CSS part.. I don't think my css is even looking good T-T
 
     def on_mount(self) -> None:
         self.lib = SongLibrary("library.json")
@@ -22,7 +22,7 @@ class TerminalPlayer(App):
         self.songs = []
         self.cur_idx = 0
         self.install_screen(WelcomeScreen(), name="welcome") # FINALLY THE AI SUGGESTED SOMETHING GOOD... "ONLY USED AI FOR REFERENCE ;-;"
-        self.install_screen(LibraryScreen(), name="library")
+        self.install_screen(LibraryScreen(), name="library") # This self.install_screen() is actually game saver btw T-T
         self.install_screen(PlayerScreen(), name="player")
         self.install_screen(SetupScreen(), name="setup")
         #self.install_screen()
@@ -62,7 +62,7 @@ class TerminalPlayer(App):
             self.songs = data.get("songs", [])
             self.switch_screen("library")
         else:
-            self.notify("BAUNA GOD has summoned you..")
+            self.notify("BAUNA GOD has summoned you..") # It's just a joke between my friends +_-
             self.switch_screen("setup")
 
 

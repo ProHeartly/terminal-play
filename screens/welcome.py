@@ -3,9 +3,11 @@ from textual.screen import Screen
 from textual.widgets import Static
 from textual.containers import Center, Middle
 import pyfiglet
-from time import sleep
+import random
 
-# I'm proud of myself after making this effect :D btw don't listen to startup.mov. PLEASE DON'T. I laughed at that thing for 1 hours straight.
+# Verse 1: I'm proud of myself after making this effect :D btw don't listen to startup.mov. PLEASE DON'T. I laughed at that thing for 1 hours straight.
+
+# Verse 2: I'm tryna update the animation to something like glitchy effect.. let's have some funnnnn, SHALLL WEEE
 
 class WelcomeScreen(Screen):
 
@@ -28,21 +30,30 @@ class WelcomeScreen(Screen):
     # this was the only solution that I could think of, for delayed animation start up.. Please don't judge meee
 
     def start_ani(self) -> None:
-        self.timer = self.set_interval(0.08, self.tick)
+        self.timer = self.set_interval(0.1, self.tick)
 
     def tick(self) -> None:
         if self.idx <= self.max_w:
             rows = []
+            is_glitch = random.random() < 0.2 # Uhhh I wanted to make the glitch look random so I'm experimenting with this.. lets see- if i like this
+
             for line in self.lines:
-                rows.append(line[:self.idx] + "█")
-            
+                base_part = line[:self.idx]
+
+                if is_glitch:
+                    glitch_chars = "".join(random.choice("@#$%&§?Ø") for _ in range(3))
+                    rows.append(base_part[:-3] + glitch_chars)
+                else:
+                    rows.append(base_part + "█")
+
             self.query_one("#welcome-text").update("\n".join(rows))
-            self.idx += 2
+            self.idx += 3
         else:
             self.timer.stop()
-            self.query_one("#welcome-text").update("\n".join(self.lines))
+            self.query_one("#welcome-text").update("\n".join(self.lines)) # FOR removal of cursor btw.. if u are wondering about this part
             self.set_timer(1.5, self.done)
-        
+
+
     def done(self) -> None:
         self.set_timer(2, self.navigate)
     
