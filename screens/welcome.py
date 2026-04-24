@@ -9,6 +9,8 @@ import random
 
 # Verse 2: I'm tryna update the animation to something like glitchy effect.. let's have some funnnnn, SHALLL WEEE
 
+# Verse 3: The previous animation didn't go as planned so I'm thinking of making first normal cursor effect then when everything loads, some glitching effect..
+
 class WelcomeScreen(Screen):
 
     def compose(self) -> ComposeResult:
@@ -17,13 +19,15 @@ class WelcomeScreen(Screen):
                 yield Static("", id="welcome-text")
 
     def on_mount(self) -> None:
-        self.app.audio.play_sfx("assets/startup.mp3")
+        #self.app.audio.play_sfx("assets/startup.mp3")
         fig = pyfiglet.Figlet(font='epic', width=100)
-        self.ascii_art = fig.renderText("HELLO, USER..")
+        self.text_1 = fig.renderText("HELLO, USER..").splitlines()
+        self.text_2 = fig.renderText("HAVE     FUN").splitlines()
 
-        self.lines = self.ascii_art.splitlines()
-        self.max_w = max(len(l) for l in self.lines)
+        self.lines = self.text_1
+        self.max_w = max(len(l) for l in self.text_1)
         self.idx = 0
+        self.glitch_count = 0
 
         self.set_timer(1, self.start_ani)
         
@@ -35,27 +39,41 @@ class WelcomeScreen(Screen):
     def tick(self) -> None:
         if self.idx <= self.max_w:
             rows = []
-            is_glitch = random.random() < 0.2 # Uhhh I wanted to make the glitch look random so I'm experimenting with this.. lets see- if i like this
-
             for line in self.lines:
-                base_part = line[:self.idx]
-
-                if is_glitch:
-                    glitch_chars = "".join(random.choice("@#$%&§?Ø") for _ in range(3))
-                    rows.append(base_part[:-3] + glitch_chars)
-                else:
-                    rows.append(base_part + "█")
+                rows.append(line[:self.idx] + "█")
 
             self.query_one("#welcome-text").update("\n".join(rows))
-            self.idx += 3
+            self.idx += 2
         else:
             self.timer.stop()
-            self.query_one("#welcome-text").update("\n".join(self.lines)) # FOR removal of cursor btw.. if u are wondering about this part
-            self.set_timer(1.5, self.done)
+            self.query_one("#welcome-text").update("\n".join(self.lines))
+            self.set_timer(1.5, self.done_1)
 
+    def done_1(self) -> None:
+        self.set_timer(2, self.start_ani_1)
 
-    def done(self) -> None:
-        self.set_timer(2, self.navigate)
+    def start_ani_1(self) -> None:
+        self.timer.stop()
+        self.timer = self.set_interval(0.08, self.glitch_morph)
+
+    def glitch_morph(self) -> None:
+        self.glitch_count += 1
+
+        if self.glitch_count < 12:
+            rows = []
+            for line in self.text_1:
+                glitched = "".join(
+                    c if random.random() > 0.3 else random.choice("@#$%&§?Ø")
+                    for c in line
+                )
+                rows.append(glitched)
+        elif self.glitch_count < 20:
+            self.lines = self.text_1 if random.random() > 0.5 else self.text_2
+            self.query_one("#welcome-text").update("\n".join(self.lines))
+        else:
+            self.timer.stop()
+            self.query_one("#welcome-text").update("\n".join(self.text_2))
+            self.set_timer(2.0, self.navigate)
     
     def navigate(self) -> None:
         self.app.startup()
