@@ -25,15 +25,8 @@ class TerminalPlayer(App):
         self.install_screen(LibraryScreen(), name="library") # This self.install_screen() is actually game saver btw T-T
         self.install_screen(PlayerScreen(), name="player")
         self.install_screen(SetupScreen(), name="setup")
-        #self.install_screen()
-
+        # you are welccomee
         self.push_screen("welcome")
-        # self.indexer = SongLibrary("D:\\songs")
-        # self.audio = Player()
-        # self.songs = self.indexer.build([])
-        # self.cur_song = None
-
-        # self.push_screen(LibraryScreen())
 
     def play_song(self, idx) -> None:
         self.cur_idx = idx

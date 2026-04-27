@@ -29,12 +29,12 @@ class WelcomeScreen(Screen):
         self.idx = 0
         self.glitch_count = 0
 
-        self.set_timer(1, self.start_ani)
+        self.set_timer(0.5, self.start_ani)
         
     # this was the only solution that I could think of, for delayed animation start up.. Please don't judge meee
 
     def start_ani(self) -> None:
-        self.timer = self.set_interval(0.1, self.tick)
+        self.timer = self.set_interval(0.01, self.tick)
 
     def tick(self) -> None:
         if self.idx <= self.max_w:
@@ -67,13 +67,14 @@ class WelcomeScreen(Screen):
                     for c in line
                 )
                 rows.append(glitched)
+            self.query_one("#welcome-text").update("\n".join(rows))
         elif self.glitch_count < 20:
             self.lines = self.text_1 if random.random() > 0.5 else self.text_2
             self.query_one("#welcome-text").update("\n".join(self.lines))
         else:
             self.timer.stop()
             self.query_one("#welcome-text").update("\n".join(self.text_2))
-            self.set_timer(2.0, self.navigate)
+            self.set_timer(1, self.navigate)
     
     def navigate(self) -> None:
         self.app.startup()

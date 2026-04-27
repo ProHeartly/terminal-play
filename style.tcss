@@ -1,10 +1,23 @@
+/* Hello guysss, I forgot to manage this file :p */
 
 Screen {
+    layers: transition;
     align: center middle;
     background: #121212;
 }
 
+Button:hover {
+    tint: white 10%;
+}
 
+Slider > .slider--handle {
+    color: gold;
+}
+
+/* Trying some transition fx */
+
+
+/* welcomeScreen*/
 #welcome-text {
     width: auto;
     height: auto;
@@ -13,7 +26,7 @@ Screen {
     content-align: center middle;
 }
 
-
+/* setupScreen */
 #nav-rail {
     width: 28;
     height: 100%;
@@ -63,7 +76,7 @@ Screen {
     margin-top: 2;
 }
 
-
+/* playerScreen */
 #player-container {
     align: center middle;
     width: 100%;
@@ -75,7 +88,7 @@ Screen {
 #art-container {
     align: center middle;
     height: 40%;
-    border: double $accent;
+    border: round $accent;
     margin-bottom: 1;
 }
 
@@ -91,7 +104,6 @@ Screen {
     height: 3;
     color: gold;
     text-style: bold;
-    border-bottom: round gray;
 }
 
 #timeline-wrapper {
@@ -108,19 +120,46 @@ Screen {
 #timeline-slider {
     width: 60%;
     margin: 0 2;
+    border: round $primary;
 }
 
 #start-time, #end-time {
     width: 7;
+    height: 1;
     text-style: bold;
-    color: $accent;
+    color: gold;
+    margin: 1;
+}
+
+#next-section {
+    width: 25%;
+    height: 3;
+    align: right top;
+    padding-top: 1;
+}
+
+#auto-play {
+    margin-right: 1;
+    margin-top: 1;
+}
+
+#auto-play-switch {
+    margin-top: 0;
 }
 
 #button-row {
     height: 5;
     align: center middle;
-    border-top: tall $primary;
     margin-top: 1;
+}
+
+#auto-play-switch {
+    border: none;
+    background: transparent;
+}
+
+#pause, #resume, #next, #prev{
+    border: round $secondary;
 }
 
 #vol-section {
@@ -130,6 +169,7 @@ Screen {
 
 #vol-slider {
     width: 25;
+    border: round $secondary;
 }
 
 #controls-section {
@@ -155,29 +195,5 @@ Screen {
 #go-back {
     margin-top: 1;
     width: 100%;
-}
-
-Button:hover {
-    tint: white 10%;
-}
-
-Slider > .slider--handle {
-    color: gold;
-}
-
-#path-input {
-    margin: 1 0;
-    border: tall $accent;
-}
-
-#path-queue-container {
-    height: 1fr;
-    margin-top: 1;
-    border: double $panel;
-    background: $boost;
-}
-
-#cmd-add {
-    width: 100%;
-    margin-bottom: 2;
+    border: round $secondary;
 }

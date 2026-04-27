@@ -29,11 +29,11 @@ class PlayerScreen(Screen):
                 with Horizontal(id="controls-section"):
                     yield Button("⏮ ", id="prev")
                     yield Button("||", id="pause", variant="warning")
-                    yield Button("▶", id="resume", variant="success")
+                    yield Button(">", id="resume", variant="success") # > cuz why not :p
                     yield Button("⏭ ", id="next")
                 
                 with Horizontal(id="next-section"):
-                    yield Label("Auto-Play Next")
+                    yield Label("Auto-Play Next", id="auto-play")
                     yield Switch(value=True, id="auto-play-switch")
 
             yield Button("Back to Library", id="go-back", variant="primary")
