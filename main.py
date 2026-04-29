@@ -9,6 +9,7 @@ from screens.library import LibraryScreen
 from screens.welcome import WelcomeScreen
 from screens.setup import SetupScreen
 from screens.player import PlayerScreen
+from screens.home import HomeScreen
 
 # I just searched what what library I may need :D.. I guess most of them are not even needed
 
@@ -25,6 +26,10 @@ def get_asset_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
+# UPDATE LOGS (I'm gonna write some logs here from now on):
+# Version -> Alpha: Music player but just worked on basic stuff
+# Version -> Alpla 1: I'm gonna make something more usable.. (its gona change everything that I made currently but for better)
+
 class TerminalPlayer(App):
 
     CSS_PATH = get_asset_path("style.tcss") # I'm just guessing the CSS part.. I don't think my css is even looking good T-T
@@ -34,10 +39,12 @@ class TerminalPlayer(App):
         self.audio = Player()
         self.songs = []
         self.cur_idx = 0
+        self.cur_song = None
         self.install_screen(WelcomeScreen(), name="welcome") # FINALLY THE AI SUGGESTED SOMETHING GOOD... "ONLY USED AI FOR REFERENCE ;-;"
-        self.install_screen(LibraryScreen(), name="library") # This self.install_screen() is actually game saver btw T-T
+        # This self.install_screen() is actually game saver btw T-T
         self.install_screen(PlayerScreen(), name="player")
         self.install_screen(SetupScreen(), name="setup")
+        self.install_screen(HomeScreen(), name="home")
         # you are welccomee
         self.push_screen("welcome")
 
@@ -66,7 +73,7 @@ class TerminalPlayer(App):
         if self.lib.exists():
             data = self.lib.readlib()
             self.songs = data.get("songs", [])
-            self.switch_screen("library")
+            self.switch_screen("home")
         else:
             self.notify("BAUNA GOD has summoned you..") # It's just a joke between my friends +_-
             self.switch_screen("setup")

@@ -5,9 +5,11 @@ import json
 import random
 from pathlib import Path
 import mutagen
+import time
 
 # I hope I utilized the imports.. I will fix in future updates if I didn't
-
+# Verse 1: Just normal backend ;-;
+# Verse 2: Making draft for playlist based system
 class SongLibrary:
     def __init__(self, lib_file="library.json"):
         self.lib_file = lib_file
@@ -30,6 +32,10 @@ class SongLibrary:
             with open(self.lib_file, "r") as f:
                 return json.load(f)
         return None
+    
+    def _writelib(self, data: dict) -> None: # its a priate helper so I don't repeat json.dump in every methoddddd
+        with open(self.lib_file, "w") as f:
+            json.dump(data, f, indent=4)
 
     def build(self, folders):
         found = []
@@ -62,7 +68,8 @@ class SongLibrary:
             
         out = {
             "directories": folders,
-            "songs": found
+            "songs": found,
+            "playlists": []
         }
 
         with open(self.lib_file, "w") as f:
@@ -70,11 +77,82 @@ class SongLibrary:
 
         return found
     
-    def random_picks(self, n=20):
+    def get_playlists(self) -> list:
+        data = self.readlib()
+        if data:
+            return data.get("playlists", [])
+        return []
+    
+    def generate_random_playlists(self, n: int = 20) -> None:
         data = self.readlib()
         if data and data["songs"]:
             return random.sample(data["songs"], min(n, len(data["songs"])))
         return []
+    
+    def refresh_random_playlists(self) -> None:
+        data = self.readlib()
+        if not data:
+            return
+        
+        data["playlists"] = [
+            pl for pl in data.get("playlists", [])
+            if pl["type"] != "auto"
+        ]
+
+        fresh = self.generate_random_playlists(20)
+        if fresh:
+            data["playlists"].insert(0, {
+                "id": "random_mix",
+                "name": "Random Mix 🎲",
+                "type": "auto",
+                "songs": fresh
+            })
+        self._writelib(data)
+    
+    def save_playlists(self, name: str, songs: list) -> str:
+        data = self.readlib()
+        if not data:
+            return ""
+        
+        pl_id = f"pl_{int(time.time())}"
+        data.setdefault("playlists", []).append({
+            "id": pl_id,
+            "name": name,
+            "type": "user",
+            "songs": songs
+        })
+
+        self._writelib(data)
+        return pl_id
+    
+    def delete_playlist(self, playlist_id: str) -> None:
+        data = self.readlib()
+        if not data:
+            return
+        
+        data["playlists"] = [
+            pl for pl in data.get("playlists", [])
+            if pl["id"] != playlist_id
+        ]
+        self._writelib(data)
+
+    def add_songs_to_playlist(self, playlist_id: str, songs: list) -> None:
+        data = self.readlib()
+        if not data:
+            return
+        
+        for pl in data["playlists"]:
+            if pl["id"] == playlist_id:
+                existing_paths = {s["path"] for s in pl["songs"]}
+                for s in songs:
+                    if s["path"] not in existing_paths:
+                        pl["songs"].append(s)
+
+                break
+        self._writelib(data)
+    
+    def random_picks(self, n=20):
+        return self.generate_random_playlists(n)
 
 class Player: # Playerrrr don't mind about the boring ahhhhhh name ;-;
     def __init__(self):
@@ -156,7 +234,7 @@ class Player: # Playerrrr don't mind about the boring ahhhhhh name ;-;
             effect.play()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # For testing ;-;
     my_folder = "D:\\songs"
     lib = SongLibrary("library.json")
     songs = lib.build([my_folder])
@@ -164,3 +242,34 @@ if __name__ == "__main__":
     print(f"Found {len(songs)} songs:\n")
     for i, s in enumerate(songs):
         print(f"{i+1}. {s['title']} - {s['artist']} [{s['duration']}]")
+
+
+"""
+draft functions ._.
+def get_playlists(self) -> list:
+    reads library.json and returns playlists array
+    if no playlists key exists, returns []
+
+def save_playlist(self, name: str, songs: list, type: str = "user") -> None:
+    reads library.json
+    generates a unique id like f"pl_{int(time.time())}"
+    appends new playlist to playlists array
+    writes back to library.json
+
+def delete_playlist(self, playlist_id: str) -> None:
+    reads library.json
+    filters out the playlist with matching id
+    writes back
+
+def generate_random_playlist(self, n: int = 20) -> list:
+    same as random_picks but returns n random songs
+    used to auto-generate a "Random Mix" on home screen
+
+def refresh_random_playlists(self) -> None:
+    reads library.json
+    removes all playlists where type == "auto"
+    generates a fresh random mix
+    saves it back
+    called every time home screen mounts so random mix is always fresh
+
+"""

@@ -51,6 +51,7 @@ class SetupScreen(Screen):
         tree.path = drive_path
 
     def on_directory_tree_selected(self, event: DirectoryTree.DirectorySelected) -> None:
+        self.query_one("#tree-hint").update(f"Selected: {event.path}")
         self.add_folder_to_queue(event.path)
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
@@ -72,11 +73,11 @@ class SetupScreen(Screen):
             if node and node.data:
                 path = node.data.path
                 if path.is_dir():
-                    self.add_folder_to_path(path)
+                    self.add_folder_to_queue(path)
                 else:
                     self.app.notify("You selected file baka! Select FOLDER/DIRECTORY..", severity="warning")
 
-    def add_folder_to_path(self, path: Path) -> None:
+    def add_folder_to_queue(self, path: Path) -> None:
         path_str = str(path)
         if path_str not in self.pending_paths:
             self.pending_paths.append(path_str)

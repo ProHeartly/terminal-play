@@ -95,7 +95,7 @@ class PlayerScreen(Screen):
             self.update_ui()
 
         elif event.button.id == "go-back":
-            self.app.switch_screen("library")
+            self.app.switch_screen("home")
 
     def on_slider_changed(self, event: Slider.Changed) -> None:
         if event.slider.id == "vol-slider":
