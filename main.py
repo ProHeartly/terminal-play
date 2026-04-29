@@ -12,9 +12,22 @@ from screens.player import PlayerScreen
 
 # I just searched what what library I may need :D.. I guess most of them are not even needed
 
+# -- Trying to compile it ;D
+
+import os
+import sys
+
+def get_asset_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 class TerminalPlayer(App):
 
-    CSS_PATH = "style.tcss" # I'm just guessing the CSS part.. I don't think my css is even looking good T-T
+    CSS_PATH = get_asset_path("style.tcss") # I'm just guessing the CSS part.. I don't think my css is even looking good T-T
 
     def on_mount(self) -> None:
         self.lib = SongLibrary("library.json")
