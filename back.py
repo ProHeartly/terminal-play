@@ -98,15 +98,24 @@ class SongLibrary:
             pl for pl in data.get("playlists", [])
             if pl["type"] != "auto"
         ]
-
-        fresh = self.generate_random_playlists(20)
-        if fresh:
-            data["playlists"].insert(0, {
-                "id": "random_mix",
-                "name": "Random Mix 🎲",
-                "type": "auto",
-                "songs": fresh
-            })
+        mixes = [
+            ("random_mix_0", "Random Mix 🎲", 20),
+            ("random_mix_1", "Random Mix 1 🎲", 25),
+            ("random_mix_2", "Random Mix 2 🎲", 15),
+            ("random_mix_3", "Random Mix 3 🎲", 20),
+            ("random_mix_4", "Random Mix 4 🎲", 15),
+            ("random_mix_5", "Random Mix 5 🎲", 20),
+        ]
+        
+        for i, (mix_id, name, count) in enumerate(mixes):
+            fresh = self.generate_random_playlists(count)
+            if fresh:
+                data["playlists"].insert(i, {
+                    "id": mix_id,
+                    "name": name,
+                    "type": "auto",
+                    "songs": fresh
+                })
         self._writelib(data)
     
     def save_playlists(self, name: str, songs: list) -> str:

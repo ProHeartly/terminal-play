@@ -1,14 +1,15 @@
 from textual.app import ComposeResult
 from textual.screen import Screen
-from textual.widgets import Header, Footer, Button, Static, Label, Switch
+from textual.widgets import Header, Footer, Button, Static, Label, Switch, DataTable
 from textual_slider import Slider
-from textual.containers import Vertical, Horizontal
+from textual.containers import Vertical, Horizontal, Middle
 
 # Verse 1: I had fun making this.. I experimented with different style, color combination and came to like the current one.. (IT WILL HAVE UPDATE IN FUTURE)
 
 class PlayerScreen(Screen):
     def compose(self) -> ComposeResult:
         yield Header()
+
         with Vertical(id="player-container"):
             with Horizontal(id="art-container"):
                 yield Static("", id="big-art") # I wanted to add like some media inside of this.. I will add in some future update ;-;
@@ -20,18 +21,18 @@ class PlayerScreen(Screen):
                     yield Label("00:00", id="start-time")
                     yield Slider(min=0, max=100, step=1, value=0, id="timeline-slider")
                     yield Label("00:00", id="end-time")
-            
+                
             with Horizontal(id="button-row"):
                 with Horizontal(id="vol-section"):
                     yield Slider(min=0, max=100, step=5, value=70, id="vol-slider")
                     yield Label("🔊")
-                
+                    
                 with Horizontal(id="controls-section"):
                     yield Button("⏮ ", id="prev")
                     yield Button("||", id="pause", variant="warning")
                     yield Button(">", id="resume", variant="success") # > cuz why not :p
                     yield Button("⏭ ", id="next")
-                
+                    
                 with Horizontal(id="next-section"):
                     yield Label("Auto-Play Next", id="auto-play")
                     yield Switch(value=True, id="auto-play-switch")
@@ -109,5 +110,10 @@ class PlayerScreen(Screen):
 
             if event.slider.has_focus:
                 self.app.audio.seek(target)
+
+    def on_screen_resume(self) -> None:
+        self.update_ui()
+        self.query_one("#pause").display = True
+        self.query_one("#resume").display = False
 
 # WAIT!! did u acctually read all the code?? and what are you even doing here?

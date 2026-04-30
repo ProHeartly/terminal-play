@@ -1,4 +1,11 @@
-/* Hello guysss, I forgot to manage this file :p */
+/* VERSE 1: Hello guysss, I forgot to manage this file :p */
+/* VERSE 2: Lets orginize this file ;) */
+
+/*
+====================================================================================================================================================
+                        GLOBAL STYLES & THEMING
+====================================================================================================================================================
+*/
 
 Screen {
     layers: transition;
@@ -14,10 +21,18 @@ Slider > .slider--handle {
     color: gold;
 }
 
-/* Trying some transition fx */
+.section-label {
+    color: $accent;
+    margin: 1 0;
+    text-style: bold;
+}
 
+/*
+====================================================================================================================================================
+                        WELCOME & SETUP
+====================================================================================================================================================
+*/
 
-/* welcomeScreen*/
 #welcome-text {
     width: auto;
     height: auto;
@@ -26,36 +41,21 @@ Slider > .slider--handle {
     content-align: center middle;
 }
 
-/* setupScreen */
+#skip-hint {
+    dock: bottom;
+    align: right bottom;
+    color: $text-muted;
+    opacity: 0.4;
+    padding: 0 1;
+}
+
+/* Setup Workspace Layout */
 #nav-rail {
     width: 28;
     height: 100%;
     background: $boost;
     border-right: solid gold;
     padding: 1 2;
-}
-
-.nav-header {
-    color: gold;
-    text-style: bold;
-    margin-bottom: 2;
-    content-align: center middle;
-}
-
-.nav-item {
-    width: 100%;
-    margin-bottom: 1;
-    border: none;
-}
-
-#workspace {
-    padding: 2 4;
-}
-
-.h1 {
-    color: gold;
-    text-style: bold;
-    margin-bottom: 1;
 }
 
 #browser {
@@ -70,13 +70,31 @@ Slider > .slider--handle {
     background: #1e1e1e;
 }
 
-#action-group {
-    height: auto;
-    align: right middle;
-    margin-top: 2;
+/*
+====================================================================================================================================================
+                        HOME & MAIN TABS
+====================================================================================================================================================
+*/
+
+#home-tabs {
+    height: 1fr;
 }
 
-/* playerScreen */
+#all-songs-table {
+    height: 1fr;
+}
+
+.playlist-btn {
+    width: 100%;
+    margin-bottom: 1;
+}
+
+/*
+====================================================================================================================================================
+                        PLAYER SCREEN (FULL FOCUS VIEW)
+====================================================================================================================================================
+*/
+
 #player-container {
     align: center middle;
     width: 100%;
@@ -198,32 +216,37 @@ Slider > .slider--handle {
     border: round $secondary;
 }
 
-#home-container {
-    height: 1fr;
-}
+/*
+====================================================================================================================================================
+                        MINI PLAYER (PERSISTENT BAR)
+====================================================================================================================================================
+*/
 
 MiniPlayer {
-    height: 5;
     dock: bottom;
-}
-
-#home-container {
+    height: 7;
     width: 100%;
-    height: 1fr;
-    padding: 1 2;
+    background: $panel;
+    border-top: solid $accent;
 }
 
-.section-label {
-    margin-top: 1;
-    color: $accent;
-}
-
-#auto-playlists, #user-playlists {
-    height: auto;
-    margin-bottom: 1;
-}
-
-.playlist-btn {
+#mini-progress {
     width: 100%;
-    margin-bottom: 1;
+    dock: top;
+}
+
+#mini-info {
+    width: 1fr;
+    height: 100%;
+    align: left middle;
+}
+
+#mini-controls {
+    width: auto;
+    align: center middle;
+}
+
+#mini-controls Button {
+    min-width: 5;
+    width: auto;
 }

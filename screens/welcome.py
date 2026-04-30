@@ -18,6 +18,8 @@ class WelcomeScreen(Screen):
             with Middle():
                 yield Static("", id="welcome-text")
 
+        yield Static("press esc to skip", id="skip-hint")
+
     def on_mount(self) -> None:
         #self.app.audio.play_sfx("assets/startup.mp3")
         fig = pyfiglet.Figlet(font='epic', width=100)
@@ -78,3 +80,11 @@ class WelcomeScreen(Screen):
     
     def navigate(self) -> None:
         self.app.startup()
+
+    def on_key(self, event) -> None: # SKIPS THE WELCOME ANIMATION
+        if event.key == "escape":
+            try:
+                self.timer.stop()
+            except:
+                pass
+            self.app.startup()

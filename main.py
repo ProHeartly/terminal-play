@@ -56,8 +56,6 @@ class TerminalPlayer(App):
         if self.audio.load(self.cur_song["path"]):
             self.audio.play()
 
-            if self.screen.name == "player":
-                self.screen.update_ui()
 
     def next_song(self) -> None:
         if self.songs:
