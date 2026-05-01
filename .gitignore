@@ -1,7 +1,8 @@
 library.json
-/screens/__pycache__
-/__pycache__
 /build
 /dist
 main.spec
 /extra
+__pycache__/
+*.py[cod]
+*$py.class

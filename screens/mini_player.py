@@ -4,9 +4,13 @@ from textual.widgets import Label, Button, ProgressBar
 from textual.containers import Horizontal, Vertical
 from textual.reactive import reactive
 
+from custom.slider import TimelineSlider
+
 # THIS WILL BE REVOLUTIONNNNNN OF TERMINAL PLAYER...
 
 # Uhhh, I'm jst experimenting so idk if this will work out ;)
+
+# Let's revamp this thing into something good >.<
 
 class MiniPlayer(Widget): # First time trying to make a widget ;-;
     def compose(self) -> ComposeResult:

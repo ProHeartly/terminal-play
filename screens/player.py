@@ -8,6 +8,8 @@ from rich.text import Text
 from rich.console import RenderableType
 from frames_data import FRAMES # Don't change frames_data to fun -_-
 
+from custom.slider import TimelineSlider # I made this so that I could add this in other files too
+
 # Verse 1: I had fun making this.. I experimented with different style, color combination and came to like the current one.. (IT WILL HAVE UPDATE IN FUTURE)
 # Tryna make something new :D  and this could break the system so making new file
 # Verse 2: I made something better UI........ I'M SOOOOO HAPPYYY TO SEE THISSS UI WORKKK
@@ -30,12 +32,12 @@ class PlayerScreen(Screen):
 
                 with Vertical(id="right-pane"):
                     with Horizontal(id="visualiser-container"):
-                        yield AsciiCinema(frames=FRAMES, fps=10, id="visualiser") # ANIMATIONNNNNn
+                        yield AsciiCinema(frames=FRAMES, fps=20, id="visualiser") # ANIMATIONNNNNn
 
             with Vertical(id="timeline-wrapper"):
                 with Horizontal(id="timeline-info"):
                     yield Label("00:00", id="start-time")
-                    yield CircleSlider(min=0, max=100, step=1, value=0, id="timeline-slider")
+                    yield TimelineSlider(min=0, max=100, step=1, value=0, id="timeline-slider")
                     yield Label("00:00", id="end-time")
                 
             with Horizontal(id="button-row"):
@@ -159,48 +161,8 @@ class AsciiCinema(Static):
             return Text("No Animation Data", style="red")
         
         if not self.playing:
-            return Text(self.frames[self.frame_index], style="#008888")
+            return Text(self.frames[self.frame_index], style="#732323")
         
-        return Text(self.frames[self.frame_index], style="#00ffff")
-
-
-"""
-        Don't mind me... copy paste gemini code.. I wanted some cool circular slider ;-;
-        and I'm not smart enough to make thisssss..
-        I do know the process now thoooo so no AI from next time >.<
-"""
-
-class CircleSlider(Slider):
-    def render(self) -> RenderableType:
-        # 1. Safety check for width
-        width = max(1, self.content_size.width)
-        
-        # 2. Calculate handle position
-        pos_ratio = self._slider_position / 100
-        handle_index = min(int(pos_ratio * width), width - 1)
-        
-        # 3. Define Colors (Hex is safer and looks better)
-        # Using a nice gold/amber hex code
-        GOLD_HEX = "#FFD700" 
-        DIM_HEX = "#444444" 
-        
-        # 4. Build the bar segments
-        track_char = "─"
-        circle_char = "●"
-        
-        bar = Text()
-        
-        # Left side: The "filled" progress
-        bar.append(track_char * handle_index, style=GOLD_HEX)
-        
-        # The Handle: The "Circle"
-        bar.append(circle_char, style=f"bold {GOLD_HEX}")
-        
-        # Right side: The remaining track
-        remaining = width - handle_index - 1
-        if remaining > 0:
-            bar.append(track_char * remaining, style=DIM_HEX)
-        
-        return bar
+        return Text(self.frames[self.frame_index], style="#C11313")
 
 # WAIT!! did u acctually read all the code?? and what are you even doing here?

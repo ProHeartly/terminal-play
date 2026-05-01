@@ -150,6 +150,11 @@ Slider > .slider--handle {
     content-align: center middle;
 }
 
+#visualiser {
+    color: #972222;
+    text-style: bold;
+}
+
 /* ART & INFO (LEFT PANE) */
 #art-container {
     width: 40;
