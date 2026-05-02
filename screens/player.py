@@ -8,13 +8,18 @@ from rich.text import Text
 from rich.console import RenderableType
 from frames_data import FRAMES # Don't change frames_data to fun -_-
 
-from custom.slider import TimelineSlider # I made this so that I could add this in other files too
+from custom.slider import TimelineSlider, VolumeSlider # I made this so that I could add this in other files too
 #from custom.button import CircularButton
 # Verse 1: I had fun making this.. I experimented with different style, color combination and came to like the current one.. (IT WILL HAVE UPDATE IN FUTURE)
 # Tryna make something new :D  and this could break the system so making new file
 # Verse 2: I made something better UI........ I'M SOOOOO HAPPYYY TO SEE THISSS UI WORKKK
+# Verse 3: I'm revamping auto-play next button into something modern
 
 class PlayerScreen(Screen):
+    def __init__(self):
+        self.loop_one = False
+        super().__init__()
+    
     def compose(self) -> ComposeResult:
         with Vertical(id="player-container"):
             with Horizontal(id="top-nav"):
@@ -42,8 +47,8 @@ class PlayerScreen(Screen):
                 
             with Horizontal(id="button-row"):
                 with Horizontal(id="vol-section"):
-                    yield Slider(min=0, max=100, step=5, value=70, id="vol-slider")
-                    yield Label("🔊")
+                    yield VolumeSlider(min=0, max=100, step=5, value=70, id="vol-slider") # I made my own custom sliderrrr for voluee
+                    yield Label("70%🔊", id="vol-label")
                     
                 with Horizontal(id="controls-section"):
                     yield Button("<", id="prev")
@@ -52,8 +57,9 @@ class PlayerScreen(Screen):
                     yield Button(">", id="next")
                     
                 with Horizontal(id="next-section"):
-                    yield Label("Auto-Play Next", id="auto-play")
-                    yield Switch(value=True, id="auto-play-switch")
+                    yield Button(Text("[auto-next]"), id="loop-mode") # Oops I discovered u can JUST CHANGE LABEL OF button ;-;
+                    # {{{{{{{{if u are wondering why [[ ]], cuz appearently [ ] is used for styling so it wont render single ones}}}}}}}}
+                    # NVMMMM ABOUT upper line.. i think i found the fix when i was tryna fix song-title in mini_player.py
 
     def on_mount(self) -> None:
         self.update_ui()
@@ -87,10 +93,13 @@ class PlayerScreen(Screen):
             self.refresh_timeline()
         
     def poll_status(self) -> None:
-        if self.query_one("#auto-play-switch").value:
-            if self.app.audio.finished():
+        if self.app.audio.finished():
+            if self.loop_one:
+                self.app.audio.load(self.app.cur_song['path']) 
+                self.app.audio.play()
+            else:
                 self.app.next_song()
-                self.update_ui()
+            self.update_ui()
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
         visualiser = self.query_one("#visualiser", AsciiCinema)
@@ -117,9 +126,25 @@ class PlayerScreen(Screen):
         elif event.button.id == "go-back":
             self.app.switch_screen("home")
 
+        elif event.button.id == "loop-mode":
+            if self.loop_one:
+                self.loop_one = False
+                event.button.label = Text("[auto-next]") # YAHHH I fixed "[[]]" issue with Text() *.* :D immm sooo smartttt
+            else:
+                self.loop_one = True
+                event.button.label = Text("[loop]")
+
     def on_slider_changed(self, event: Slider.Changed) -> None:
         if event.slider.id == "vol-slider":
             self.app.audio.set_volume(event.value / 100)
+            if event.value > 70:
+                self.query_one("#vol-label").update(f"{event.value}%🔊")
+            elif event.value > 40:
+                self.query_one("#vol-label").update(f"{event.value}%🔉")
+            elif event.value != 0:
+                self.query_one("#vol-label").update(f"{event.value}%🔈")
+            else:
+                self.query_one("#vol-label").update(f"{event.value}%🔇")
 
         elif event.slider.id == "timeline-slider":
             _, total, _ = self.app.audio.progress()

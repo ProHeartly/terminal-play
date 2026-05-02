@@ -38,3 +38,39 @@ class TimelineSlider(Slider):
             bar.append(track_char * remaining, style=DIM_HEX)
         
         return bar
+    
+
+# customm volumee sliderrr
+# inspired by mobile's UI.. my mobile's volume slider had something like this so I just copied it
+class VolumeSlider(Slider):
+    def render(self) -> RenderableType:
+        # 1. Safety check for width
+        width = max(1, self.content_size.width)
+        
+        # 2. Calculate handle position
+        pos_ratio = self._slider_position / 100
+        handle_index = min(int(pos_ratio * width), width - 1)
+        
+        # 3. Define Colors (Hex is safer and looks better)
+        # Using a nice gold/amber hex code
+        AMBER_HEX = "#FB8500" 
+        DIM_HEX = "#444444" 
+        
+        # 4. Build the bar segments
+        fill_char = "█"
+        not_fill_char = "▓"
+        
+        bar = Text()
+        
+        # Left side: The "filled" progress
+        bar.append(fill_char * (handle_index + 1), style=AMBER_HEX)
+        
+        # Right side: The remaining track
+        remaining = width - handle_index - 1
+        if remaining > 0:
+            bar.append(not_fill_char * remaining, style=DIM_HEX)
+        
+        if self._slider_position == 0:
+            return Text().append(not_fill_char * (remaining + 1), style=DIM_HEX)
+        else:
+            return bar

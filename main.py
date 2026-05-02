@@ -30,6 +30,7 @@ def get_asset_path(relative_path):
 # Version -> Alpha: Music player but just worked on basic stuff
 # Version -> Alpla 1: I'm gonna make something more usable.. (its gona change everything that I made currently but for better)
 # Version -> Alpha 1.1: I'm gonna UPDATE THE UI .-. (I'M OBSESSED WITH MAKING THIS LOOK BETTER)
+# Version -> Alpha 1.2: I made small tweaks.. like now there's a half proper home screen.., mini-player with marquee animation if text overflows.., loop and next song button in player and also how can we forget about the new volume slider.. IT looks damn clean. + many more changes
 
 class TerminalPlayer(App):
 

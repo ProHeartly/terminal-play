@@ -6,6 +6,7 @@ from textual.reactive import reactive
 from textual_slider import Slider
 
 from custom.slider import TimelineSlider
+from custom.label import MarqueeLabel
 
 # THIS WILL BE REVOLUTIONNNNNN OF TERMINAL PLAYER...
 
@@ -13,11 +14,17 @@ from custom.slider import TimelineSlider
 
 # Let's revamp this thing into something good >.<
 
+# Updated song-title and made it play marquee animation with custom label widget if it overflows also fixed: text inside "[]" not showing due to being formatting agent or smth
+
 class MiniPlayer(Widget): # First time trying to make a widget ;-;
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.last_song_path = None
+
     def compose(self) -> ComposeResult:
         with Horizontal(id="mini-player"):
             with Vertical(id="mini-info"):
-                yield Label("No song playing", id="mini-title")
+                yield MarqueeLabel("No song playing", id="mini-title")
                 yield Label("", id="mini-artist")
             with Horizontal(id="mini-controls"):
                 yield Button("<<", id="mini-prev")
@@ -40,8 +47,10 @@ class MiniPlayer(Widget): # First time trying to make a widget ;-;
         if not song:
             return
         
-        self.query_one("#mini-title").update(song["title"])
-        self.query_one("#mini-artist").update(song["artist"])
+        if song["path"] != self.last_song_path:
+            self.query_one("#mini-title", MarqueeLabel).update_text(song["title"])
+            self.query_one("#mini-artist").update(song["artist"])
+            self.last_song_path = song["path"]
 
         curr, total, pct = self.app.audio.progress()
         slider = self.query_one("#mini-timeline-slider")

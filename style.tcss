@@ -93,7 +93,7 @@ HomeScreen {
 }
 
 Tab {
-    color: $soft;
+    color: $sub;
     background: transparent;
     text-style: bold;
 }
@@ -105,7 +105,7 @@ Tabs > .textual-tabs--active {
 
 #home-tabs Underline > .underline--bar {
     color: $gold;
-    background: $gold;
+    background: $bg;
 }
 
 /* --- CONTENT PANES --- */
@@ -117,18 +117,13 @@ TabPane {
 DataTable {
     background: $bg-light;
     color: $bg;
-    border: tall $alert;
     height: 1fr;
-    scrollbar-color: $main;
+    scrollbar-color: $soft;
     scrollbar-background: $bg;
     scrollbar-color-hover: $gold;
     scrollbar-color-active: $gold;
     scrollbar-background-hover: $bg;
     scrollbar-background-active: $bg;
-}
-
-DataTable:focus {
-    border: tall $gold;
 }
 
 DataTable > .datatable--cursor {
@@ -349,13 +344,20 @@ DataTable > .datatable--cursor {
 }
 
 #vol-section {
-    width: 25%;
     align: left middle;
 }
 
 #vol-slider {
     width: 25;
     border: round $main;
+}
+
+#vol-label {
+    width: 8;
+    min-width: 8;
+    height: 1;
+    color: $alert;
+    margin: 1 0 0 1;
 }
 
 #controls-section {
@@ -370,12 +372,16 @@ DataTable > .datatable--cursor {
 
 #next-section {
     width: 25%;
+    height: 5;
     align: right middle;
 }
 
-#next-section Label {
-    margin-right: 1;
-    color: $alert;
+#loop-mode {
+    border: round $soft;
+    text-style: bold;
+    background: transparent;
+    color: $soft;
+    content-align: center middle;
 }
 
 #go-back {
@@ -401,8 +407,19 @@ MiniPlayer {
     border-top: solid $alert;
 }
 
+MarqueeLabel {
+    width: 1fr;
+    height: 1;
+    color: $gold;
+    text-style: bold;
+    content-align: left middle;
+}
+
 #mini-info {
-    width: 25%;
+    margin-left: 2;
+    width: 30%;
+    min-width: 20;
+    max-width: 40;
     height: 100%;
     align: left middle;
 }
