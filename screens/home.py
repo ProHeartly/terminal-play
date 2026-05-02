@@ -1,7 +1,7 @@
 from textual.app import ComposeResult
 from textual.screen import Screen
 from textual.widgets import Header, Footer, Button, Static, Label, DataTable, ListItem, ListView, TabbedContent, TabPane
-from textual.containers import Vertical, Horizontal, ScrollableContainer
+from textual.containers import Vertical, Horizontal, ScrollableContainer, Center
 from screens.mini_player import MiniPlayer
 from screens.library import LibraryScreen
 from screens.setup import SetupScreen
@@ -14,12 +14,11 @@ class HomeScreen(Screen):
     def compose(self) -> ComposeResult: # the main screen's UI is damn complex.. I hope my future self would be able to read this ;-;
         yield Header()
         with Vertical(id="main-app-shell"):
-            yield Static("[b gold] TERMINAL PLAY [/]", id="home-title")
             with TabbedContent(id="home-tabs"):
                 with TabPane("🎵 Library", id="tab-library"):
                     yield DataTable(id="all-songs-table", cursor_type="row")
 
-                with TabPane("🎲 Playlists", id="tab-playlists"):
+                with TabPane("📁 Playlists", id="tab-playlists"):
                     with Horizontal(id="playlist-header-row"):
                         yield Label("AUTO GENERATED", classes="section-label")
                         yield Button("🔄 Regenerate", id="btn-regenerate", variant="primary")
@@ -41,9 +40,6 @@ class HomeScreen(Screen):
                             yield Button("Re-Sync Library", id="btn-resync", variant="success")
         
         yield MiniPlayer(id="mini-player-bar")
-        yield Footer()
-
-        yield Footer()
 
     def on_mount(self) -> None:
         self.app.lib.refresh_random_playlists()

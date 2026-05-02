@@ -9,7 +9,7 @@ from rich.console import RenderableType
 from frames_data import FRAMES # Don't change frames_data to fun -_-
 
 from custom.slider import TimelineSlider # I made this so that I could add this in other files too
-
+#from custom.button import CircularButton
 # Verse 1: I had fun making this.. I experimented with different style, color combination and came to like the current one.. (IT WILL HAVE UPDATE IN FUTURE)
 # Tryna make something new :D  and this could break the system so making new file
 # Verse 2: I made something better UI........ I'M SOOOOO HAPPYYY TO SEE THISSS UI WORKKK
@@ -46,10 +46,10 @@ class PlayerScreen(Screen):
                     yield Label("🔊")
                     
                 with Horizontal(id="controls-section"):
-                    yield Button("⏮ ", id="prev")
-                    yield Button("||", id="pause", variant="warning")
-                    yield Button(">", id="resume", variant="success") # > cuz why not :p
-                    yield Button("⏭ ", id="next")
+                    yield Button("<", id="prev")
+                    yield Button("||", id="pause")
+                    yield Button(":▶", id="resume")
+                    yield Button(">", id="next")
                     
                 with Horizontal(id="next-section"):
                     yield Label("Auto-Play Next", id="auto-play")

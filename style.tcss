@@ -1,5 +1,16 @@
 /* VERSE 1: Hello guysss, I forgot to manage this file :p */
 /* VERSE 2: Lets orginize this file ;) */
+/*
+Till now.. this feelss like somee unpolished UI.. I wana make it in some theme.. like maybe old radio player. Lets see what I will come up with
+till then BYEE!
+*/
+$main: #E9B872;
+$bg: #151515;
+$bg-light: #1F1F1F;
+$alert: #A63D40;
+$soft: #90A959;
+$calm: #6494AA;
+$gold: #FFD700;
 
 /*
 ====================================================================================================================================================
@@ -10,19 +21,15 @@
 Screen {
     layers: transition;
     align: center middle;
-    background: #121212;
+    background: $bg;
 }
 
 Button:hover {
-    tint: white 10%;
-}
-
-Slider > .slider--handle {
-    color: gold;
+    text-style: italic;
 }
 
 .section-label {
-    color: $accent;
+    color: $soft;
     margin: 1 0;
     text-style: bold;
 }
@@ -36,7 +43,7 @@ Slider > .slider--handle {
 #welcome-text {
     width: auto;
     height: auto;
-    color: #bc13fe; 
+    color: $alert; 
     text-style: bold;
     content-align: center middle;
 }
@@ -50,43 +57,120 @@ Slider > .slider--handle {
 }
 
 /* Setup Workspace Layout */
-#nav-rail {
-    width: 28;
-    height: 100%;
-    background: $boost;
-    border-right: solid gold;
-    padding: 1 2;
-}
 
-#browser {
-    height: 1fr;
-    border: tall $accent;
-    background: $surface;
-}
-
-#path-queue {
-    height: 7;
-    border: panel $primary;
-    background: #1e1e1e;
-}
 
 /*
 ====================================================================================================================================================
                         HOME & MAIN TABS
 ====================================================================================================================================================
 */
+HomeScreen {
+    background: $bg;
+    color: $gold;
+}
+
+#main-app-shell {
+    padding: 1 2;
+    height: 1fr;
+}
 
 #home-tabs {
     height: 1fr;
-}
-
-#all-songs-table {
-    height: 1fr;
-}
-
-.playlist-btn {
-    width: 100%;
     margin-bottom: 1;
+}
+
+#home-tabs > Tabs {
+    background: transparent;
+    border: none;
+    width: 100%;
+    align: center middle;
+}
+
+#home-tabs > Tabs > Horizontal {
+    width: auto;
+}
+
+Tab {
+    color: $main;
+    background: transparent;
+    text-style: bold;
+}
+
+Tabs > .textual-tabs--active {
+    color: $gold;
+    text-style: underline bold;
+}
+
+#home-tabs Underline > .underline--bar {
+    color: $gold;
+    background: $main;
+}
+
+/* --- CONTENT PANES --- */
+TabPane {
+    background: $bg-light;
+}
+
+/* --- DATA TABLE (The Song List) --- */
+DataTable {
+    background: $bg;
+    color: $main;
+    border: tall $bg-light;
+    height: 1fr;
+    scrollbar-color: $calm;
+    scrollbar-background: $bg-light;
+    scrollbar-color-hover: $soft;
+    scrollbar-color-active: $soft;
+    scrollbar-background-hover: $bg-light;
+    scrollbar-background-active: $bg-light;
+}
+
+DataTable:focus {
+    border: tall $gold;
+}
+
+DataTable > .datatable--cursor {
+    background: $main;
+    color: $bg;
+}
+
+/* --- PLAYLIST BUTTONS (The Creative Part) --- */
+.playlist-btn {
+    width: 1fr;
+    margin: 0 1;
+    background: transparent;
+    border: tall $main 30%;
+    color: $main;
+    content-align: left middle;
+}
+
+.playlist-btn:hover {
+    background: $main 10%;
+    border: tall $gold;
+    color: $gold;
+}
+
+/* --- SETTINGS & BUTTONS --- */
+.section-label {
+    text-style: bold;
+    color: $gold;
+    margin: 1 0;
+    padding-left: 1;
+}
+
+#btn-regenerate, #btn-add-dir {
+    background: $soft;
+    color: $bg;
+}
+
+#btn-remove-dir {
+    background: $alert;
+    color: white;
+}
+
+#btn-resync {
+    background: $calm;
+    color: white;
 }
 
 /*
@@ -100,7 +184,7 @@ Slider > .slider--handle {
     width: 100%;
     height: 100%;
     padding: 1 2;
-    background: #121212;
+    background: $bg;
 }
 
 /* TOP NAVIGATION */
@@ -114,14 +198,14 @@ Slider > .slider--handle {
     width: 1fr;
     text-align: center;
     text-style: bold;
-    color: #888888;
+    color: $calm;
 }
 
 #top-nav Button {
     min-width: 4;
     background: transparent;
     border: none;
-    color: white;
+    color: $calm;
 }
 
 /* MIDDLE CONTENT SPLIT */
@@ -145,13 +229,13 @@ Slider > .slider--handle {
 #visualiser-container {
     width: 45;
     height: 18;
-    border: round #1fb6ae;
-    background: $boost;
+    border: round $soft;
+    background: $bg-light;
     content-align: center middle;
 }
 
 #visualiser {
-    color: #972222;
+    color: $alert;
     text-style: bold;
 }
 
@@ -159,14 +243,14 @@ Slider > .slider--handle {
 #art-container {
     width: 40;
     height: 15;
-    border: round gold;
-    background: $boost;
+    border: round $gold;
+    background: $bg;
     content-align: center middle;
 }
 
 #big-art {
     content-align: center middle;
-    color: $accent;
+    color: $main;
     text-style: bold;
 }
 
@@ -210,7 +294,7 @@ Slider > .slider--handle {
 #timeline-slider {
     width: 80%;
     margin: 0 2;
-    border: round $primary;
+    border: round $gold;
 }
 
 #start-time, #end-time {
@@ -248,8 +332,16 @@ Slider > .slider--handle {
     background: transparent;
 }
 
-#pause, #resume, #next, #prev{
-    border: round $secondary;
+#pause, #resume {
+    border: round $gold;
+    text-style: bold;
+    background: transparent;
+}
+
+#next, #prev{
+    border: round $calm;
+    text-style: bold;
+    background: transparent;
 }
 
 #vol-section {
@@ -259,7 +351,7 @@ Slider > .slider--handle {
 
 #vol-slider {
     width: 25;
-    border: round $secondary;
+    border: round $calm;
 }
 
 #controls-section {
@@ -269,7 +361,7 @@ Slider > .slider--handle {
 
 #controls-section Button {
     margin: 0 1;
-    min-width: 8;
+    min-width: 4;
 }
 
 #next-section {
@@ -300,27 +392,68 @@ MiniPlayer {
     dock: bottom;
     height: 7;
     width: 100%;
-    background: $panel;
-    border-top: solid $accent;
-}
-
-#mini-progress {
-    width: 100%;
-    dock: top;
+    background: $bg-light;
+    border-top: solid $main;
 }
 
 #mini-info {
-    width: 1fr;
+    width: 25%;
     height: 100%;
     align: left middle;
+}
+
+#mini-title {
+    text-style: bold;
+    color: #ffffff;
+}
+
+#mini-artist {
+    color: #888888;
 }
 
 #mini-controls {
     width: auto;
     align: center middle;
+    height: 5;
+    margin: 0 2;
+    background: $bg;
+    border: round $calm;
 }
 
 #mini-controls Button {
-    min-width: 5;
-    width: auto;
+    min-width: 4;
+    height: 3;
+    border: none;
+    background: transparent;
+    color: $calm;
 }
+
+/* MINI TIMELINE WRAPPER */
+#mini-timeline-wrapper {
+    width: 1fr;
+    height: 100%;
+    align: center middle;
+
+}
+
+#mini-timeline-info {
+    height: 3;
+    align: center middle;
+}
+
+#mini-timeline-slider {
+    width: 1fr;
+    height: 1;
+    margin: 0 1; 
+    border: round $gold;
+    padding: 0;
+}
+
+#mini-start-time, #mini-end-time {
+    width: 7;
+    height: 1;
+    text-style: bold;
+    color: $gold;
+    margin: 1;
+}
+

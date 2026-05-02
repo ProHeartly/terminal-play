@@ -4,6 +4,8 @@ from rich.console import RenderableType
 
 # I will add more custom sliders here
 
+# THIS actuallyyyy looks amazinggg *-*
+
 class TimelineSlider(Slider):
     def render(self) -> RenderableType:
         # 1. Safety check for width

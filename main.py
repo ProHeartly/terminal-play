@@ -29,6 +29,7 @@ def get_asset_path(relative_path):
 # UPDATE LOGS (I'm gonna write some logs here from now on):
 # Version -> Alpha: Music player but just worked on basic stuff
 # Version -> Alpla 1: I'm gonna make something more usable.. (its gona change everything that I made currently but for better)
+# Version -> Alpha 1.1: I'm gonna UPDATE THE UI .-. (I'M OBSESSED WITH MAKING THIS LOOK BETTER)
 
 class TerminalPlayer(App):
 
