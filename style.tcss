@@ -4,13 +4,15 @@
 Till now.. this feelss like somee unpolished UI.. I wana make it in some theme.. like maybe old radio player. Lets see what I will come up with
 till then BYEE!
 */
-$main: #E9B872;
-$bg: #151515;
-$bg-light: #1F1F1F;
-$alert: #A63D40;
-$soft: #90A959;
-$calm: #6494AA;
-$gold: #FFD700;
+$main: #FB8500;   /* Amber Glow (Primary accents) */
+$sub: #FFB703;    /* Bright Gold (Selection/Focus) */
+
+$bg: #2B2D42;      /* Deep Navy (The Radio Casing) */
+$bg-light: #1e213b;/* Antique Cream (The Faceplate) */
+$alert: #8E3B1E;   /* Rust Brown (Wood Trim/Alerts) */
+$soft: #FB8500;    /* Amber Glow */
+$calm: #8E3B1E;    /* Rust Brown */
+$gold: #FFB703;    /* Bright Gold */
 
 /*
 ====================================================================================================================================================
@@ -29,7 +31,7 @@ Button:hover {
 }
 
 .section-label {
-    color: $soft;
+    color: $main;
     margin: 1 0;
     text-style: bold;
 }
@@ -43,7 +45,7 @@ Button:hover {
 #welcome-text {
     width: auto;
     height: auto;
-    color: $alert; 
+    color: $gold; 
     text-style: bold;
     content-align: center middle;
 }
@@ -51,7 +53,7 @@ Button:hover {
 #skip-hint {
     dock: bottom;
     align: right bottom;
-    color: $text-muted;
+    color: $alert;
     opacity: 0.4;
     padding: 0 1;
 }
@@ -91,7 +93,7 @@ HomeScreen {
 }
 
 Tab {
-    color: $main;
+    color: $soft;
     background: transparent;
     text-style: bold;
 }
@@ -103,7 +105,7 @@ Tabs > .textual-tabs--active {
 
 #home-tabs Underline > .underline--bar {
     color: $gold;
-    background: $main;
+    background: $gold;
 }
 
 /* --- CONTENT PANES --- */
@@ -113,16 +115,16 @@ TabPane {
 
 /* --- DATA TABLE (The Song List) --- */
 DataTable {
-    background: $bg;
-    color: $main;
-    border: tall $bg-light;
+    background: $bg-light;
+    color: $bg;
+    border: tall $alert;
     height: 1fr;
-    scrollbar-color: $calm;
-    scrollbar-background: $bg-light;
-    scrollbar-color-hover: $soft;
-    scrollbar-color-active: $soft;
-    scrollbar-background-hover: $bg-light;
-    scrollbar-background-active: $bg-light;
+    scrollbar-color: $main;
+    scrollbar-background: $bg;
+    scrollbar-color-hover: $gold;
+    scrollbar-color-active: $gold;
+    scrollbar-background-hover: $bg;
+    scrollbar-background-active: $bg;
 }
 
 DataTable:focus {
@@ -131,7 +133,7 @@ DataTable:focus {
 
 DataTable > .datatable--cursor {
     background: $main;
-    color: $bg;
+    color: $bg-light;
 }
 
 /* --- PLAYLIST BUTTONS (The Creative Part) --- */
@@ -139,8 +141,8 @@ DataTable > .datatable--cursor {
     width: 1fr;
     margin: 0 1;
     background: transparent;
-    border: tall $main 30%;
-    color: $main;
+    border: tall $alert 30%;
+    color: $alert;
     content-align: left middle;
 }
 
@@ -153,24 +155,24 @@ DataTable > .datatable--cursor {
 /* --- SETTINGS & BUTTONS --- */
 .section-label {
     text-style: bold;
-    color: $gold;
+    color: $main;
     margin: 1 0;
     padding-left: 1;
 }
 
 #btn-regenerate, #btn-add-dir {
-    background: $soft;
-    color: $bg;
+    background: $main;
+    color: $bg-light;
 }
 
 #btn-remove-dir {
     background: $alert;
-    color: white;
+    color: $bg-light;
 }
 
 #btn-resync {
-    background: $calm;
-    color: white;
+    background: $sub;
+    color: $bg-light;
 }
 
 /*
@@ -198,14 +200,14 @@ DataTable > .datatable--cursor {
     width: 1fr;
     text-align: center;
     text-style: bold;
-    color: $calm;
+    color: $gold;
 }
 
 #top-nav Button {
     min-width: 4;
     background: transparent;
     border: none;
-    color: $calm;
+    color: $gold;
 }
 
 /* MIDDLE CONTENT SPLIT */
@@ -229,13 +231,13 @@ DataTable > .datatable--cursor {
 #visualiser-container {
     width: 45;
     height: 18;
-    border: round $soft;
+    border: round $gold;
     background: $bg-light;
     content-align: center middle;
 }
 
 #visualiser {
-    color: $alert;
+    color: $main;
     text-style: bold;
 }
 
@@ -243,14 +245,14 @@ DataTable > .datatable--cursor {
 #art-container {
     width: 40;
     height: 15;
-    border: round $gold;
-    background: $bg;
+    border: round $alert;
+    background: $bg-light;
     content-align: center middle;
 }
 
 #big-art {
     content-align: center middle;
-    color: $main;
+    color: $alert;
     text-style: bold;
 }
 
@@ -266,12 +268,12 @@ DataTable > .datatable--cursor {
     text-align: left;
     width: 100%;
     height: 1;
-    color: #ffffff;
+    color: $gold;
     text-style: bold;
 }
 
 #song-artist {
-    color: #888888;
+    color: $main;
     width: 100%;
     height: 1;
     text-align: left;
@@ -301,7 +303,7 @@ DataTable > .datatable--cursor {
     width: 7;
     height: 1;
     text-style: bold;
-    color: gold;
+    color: $gold;
     margin: 1;
 }
 
@@ -336,12 +338,14 @@ DataTable > .datatable--cursor {
     border: round $gold;
     text-style: bold;
     background: transparent;
+    color: $gold;
 }
 
 #next, #prev{
-    border: round $calm;
+    border: round $main;
     text-style: bold;
     background: transparent;
+    color: $main;
 }
 
 #vol-section {
@@ -351,7 +355,7 @@ DataTable > .datatable--cursor {
 
 #vol-slider {
     width: 25;
-    border: round $calm;
+    border: round $main;
 }
 
 #controls-section {
@@ -371,15 +375,16 @@ DataTable > .datatable--cursor {
 
 #next-section Label {
     margin-right: 1;
-    color: gray;
+    color: $alert;
 }
 
 #go-back {
-    width: auto;     
+    width: auto;      
     min-width: 4;
     border: none;
     background: transparent;
     margin-top: 0;
+    color: $gold;
 }
 
 /*
@@ -393,7 +398,7 @@ MiniPlayer {
     height: 7;
     width: 100%;
     background: $bg-light;
-    border-top: solid $main;
+    border-top: solid $alert;
 }
 
 #mini-info {
@@ -404,11 +409,11 @@ MiniPlayer {
 
 #mini-title {
     text-style: bold;
-    color: #ffffff;
+    color: $bg;
 }
 
 #mini-artist {
-    color: #888888;
+    color: $alert;
 }
 
 #mini-controls {
@@ -417,7 +422,7 @@ MiniPlayer {
     height: 5;
     margin: 0 2;
     background: $bg;
-    border: round $calm;
+    border: round $main;
 }
 
 #mini-controls Button {
@@ -425,7 +430,7 @@ MiniPlayer {
     height: 3;
     border: none;
     background: transparent;
-    color: $calm;
+    color: $main;
 }
 
 /* MINI TIMELINE WRAPPER */
@@ -453,7 +458,6 @@ MiniPlayer {
     width: 7;
     height: 1;
     text-style: bold;
-    color: $gold;
+    color: $bg;
     margin: 1;
 }
-
