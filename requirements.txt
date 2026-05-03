@@ -1,0 +1,8 @@
+# UI Framework
+textual>=0.50.0
+
+# Aesthetics and Fonts
+rich>=13.5.0
+
+# System and Utilities
+pathlib>=1.0.1

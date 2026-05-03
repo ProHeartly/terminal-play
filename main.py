@@ -31,10 +31,11 @@ def get_asset_path(relative_path):
 # Version -> Alpla 1: I'm gonna make something more usable.. (its gona change everything that I made currently but for better)
 # Version -> Alpha 1.1: I'm gonna UPDATE THE UI .-. (I'M OBSESSED WITH MAKING THIS LOOK BETTER)
 # Version -> Alpha 1.2: I made small tweaks.. like now there's a half proper home screen.., mini-player with marquee animation if text overflows.., loop and next song button in player and also how can we forget about the new volume slider.. IT looks damn clean. + many more changes
+# Version -> Alpha 1.3: Made custom welcome animation from .mov to ascii then rendered it.. and also restructured the file system.
 
 class TerminalPlayer(App):
 
-    CSS_PATH = get_asset_path("style.tcss") # I'm just guessing the CSS part.. I don't think my css is even looking good T-T
+    CSS_PATH = get_asset_path("assets/style/style.tcss") # I'm just guessing the CSS part.. I don't think my css is even looking good T-T
 
     def on_mount(self) -> None:
         self.lib = SongLibrary("library.json")

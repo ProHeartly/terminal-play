@@ -6,7 +6,7 @@ from textual.containers import Vertical, Horizontal, Middle
 import random
 from rich.text import Text
 from rich.console import RenderableType
-from frames_data import FRAMES # Don't change frames_data to fun -_-
+from assets.ascii.visual_ani import FRAMES # Don't change frames_data to fun -_-
 
 from custom.slider import TimelineSlider, VolumeSlider # I made this so that I could add this in other files too
 #from custom.button import CircularButton

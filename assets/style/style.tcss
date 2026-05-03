@@ -42,22 +42,6 @@ Button:hover {
 ====================================================================================================================================================
 */
 
-#welcome-text {
-    width: auto;
-    height: auto;
-    color: $gold; 
-    text-style: bold;
-    content-align: center middle;
-}
-
-#skip-hint {
-    dock: bottom;
-    align: right bottom;
-    color: $alert;
-    opacity: 0.4;
-    padding: 0 1;
-}
-
 /* Setup Workspace Layout */
 
 
