@@ -34,6 +34,7 @@ def get_asset_path(relative_path):
 # Version -> Alpha 1.3: Made custom welcome animation from .mov to ascii then rendered it.. and also restructured the file system.
 # Version -> Alpha 1.4: Getting this thing ready for small bug testing and feed back release within my friends..
 # Version -> Alpha 1.5: Added option for user to make playlist, updated library.py with remove library button and Updated UI
+# Version -> Alpha 1.6: Getting application ready for alpha release..
 
 class TerminalPlayer(App):
 
