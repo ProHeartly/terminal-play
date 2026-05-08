@@ -1,7 +1,7 @@
 from textual.app import ComposeResult
 from textual.widgets import Header, Footer, Input, Button, Label, ListItem, ListView, Static, DirectoryTree, Tabs, Tab
 from textual.screen import Screen
-from textual.containers import Vertical, Horizontal, Center, Container
+from textual.containers import Vertical, Horizontal, Center, Container, Middle
 import os
 from pathlib import Path
 

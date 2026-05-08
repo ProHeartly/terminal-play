@@ -9,7 +9,7 @@ from rich.console import RenderableType
 from assets.ascii.visual_ani import FRAMES # Don't change frames_data to fun -_-
 
 from custom.slider import TimelineSlider, VolumeSlider # I made this so that I could add this in other files too
-#from custom.button import CircularButton
+from custom.label import MarqueeLabel
 # Verse 1: I had fun making this.. I experimented with different style, color combination and came to like the current one.. (IT WILL HAVE UPDATE IN FUTURE)
 # Tryna make something new :D  and this could break the system so making new file
 # Verse 2: I made something better UI........ I'M SOOOOO HAPPYYY TO SEE THISSS UI WORKKK
@@ -32,7 +32,7 @@ class PlayerScreen(Screen):
                         yield Static("", id="big-art") # I wanted to add like some media inside of this.. I will add in some future update ;-;
 
                     with Vertical(id="info-container"):
-                        yield Static("Song Title Loading...", id="song-title")
+                        yield MarqueeLabel("Song Title Loading...", id="song-title")
                         yield Static("Song Artist Loading...", id="song-artist")
 
                 with Vertical(id="right-pane"):
@@ -87,7 +87,7 @@ class PlayerScreen(Screen):
     def update_ui(self) -> None:
         s = self.app.cur_song
         if s:
-            self.query_one("#song-title").update(f"[b]{s['title']}[/b]")
+            self.query_one("#song-title", MarqueeLabel).update_text(s["title"])
             self.query_one("#song-artist").update(s.get('artist', 'Unknown Artist'))
             self.query_one("#big-art").update("(Music Playing)")
             self.refresh_timeline()

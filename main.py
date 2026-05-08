@@ -32,6 +32,8 @@ def get_asset_path(relative_path):
 # Version -> Alpha 1.1: I'm gonna UPDATE THE UI .-. (I'M OBSESSED WITH MAKING THIS LOOK BETTER)
 # Version -> Alpha 1.2: I made small tweaks.. like now there's a half proper home screen.., mini-player with marquee animation if text overflows.., loop and next song button in player and also how can we forget about the new volume slider.. IT looks damn clean. + many more changes
 # Version -> Alpha 1.3: Made custom welcome animation from .mov to ascii then rendered it.. and also restructured the file system.
+# Version -> Alpha 1.4: Getting this thing ready for small bug testing and feed back release within my friends..
+# Version -> Alpha 1.5: Added option for user to make playlist, updated library.py with remove library button and Updated UI
 
 class TerminalPlayer(App):
 

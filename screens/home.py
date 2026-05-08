@@ -1,7 +1,9 @@
 from textual.app import ComposeResult
-from textual.screen import Screen
-from textual.widgets import Header, Footer, Button, Static, Label, DataTable, ListItem, ListView, TabbedContent, TabPane
-from textual.containers import Vertical, Horizontal, ScrollableContainer, Center
+from textual.screen import Screen, ModalScreen
+from textual.widgets import Header, Footer, Button, Static, Label, DataTable, ListItem, ListView, TabbedContent, TabPane, Input, SelectionList
+from textual.containers import Vertical, Horizontal, ScrollableContainer, Center, HorizontalScroll, Container
+from textual.widgets.selection_list import Selection
+
 from screens.mini_player import MiniPlayer
 from screens.library import LibraryScreen
 from screens.setup import SetupScreen
@@ -9,6 +11,7 @@ import time
 # VERSE 1: gonna make something like yt music or spotify buttt later I'm gonna touch my typa creativity.
 # VERSE 2: I'm tryna improve the ui.. hope it looks good before I spend 10 hours on it T-T
 # Quote of the file: "Make it before you perfect it" - ME
+# Verse 3: Making playlist tab beautiful anddd workingg
 
 class HomeScreen(Screen):
     def compose(self) -> ComposeResult: # the main screen's UI is damn complex.. I hope my future self would be able to read this ;-;
@@ -19,25 +22,29 @@ class HomeScreen(Screen):
                     yield DataTable(id="all-songs-table", cursor_type="row")
 
                 with TabPane("📁 Playlists", id="tab-playlists"):
-                    with Horizontal(id="playlist-header-row"):
-                        yield Label("AUTO GENERATED", classes="section-label")
-                        yield Button("🔄 Regenerate", id="btn-regenerate", variant="primary")
-                    
-                    with ScrollableContainer(id="auto-playlists"):
-                        pass
-
-                    yield Label("YOUR PLAYLISTS", classes="section-label")
-                    with ScrollableContainer(id="user-playlists"):
-                        pass
+                    with ScrollableContainer(id="playlist-tab-container"):
+                        with Horizontal(classes="playlist-header-row"):
+                            yield Label("AUTO GENERATED", classes="section-label")
+                            yield Button("🔄 Regenerate", id="btn-regenerate")
+                        
+                        with HorizontalScroll(id="auto-playlists"):
+                            pass
+                        
+                        with Horizontal(classes="playlist-header-row"):
+                            yield Label("YOUR PLAYLISTS", classes="section-label")
+                            yield Button("➕ Create", id="btn-create-playlist")
+                        
+                        with HorizontalScroll(id="user-playlists"):
+                            pass
 
                 with TabPane("⚙ Settings", id="tab-settings"):
                     with ScrollableContainer(id="settings-scroll"):
                         yield Label("Music Directories", classes="section-label")
                         yield ListView(id="dir-list")
                         with Horizontal(id="settings-actions"):
-                            yield Button("Add Directory", id="btn-add-dir", variant="primary")
-                            yield Button("Remove Selected", id="btn-remove-dir", variant="error")
-                            yield Button("Re-Sync Library", id="btn-resync", variant="success")
+                            yield Button("Add Directory", id="btn-add-dir")
+                            yield Button("Remove Selected", id="btn-remove-dir")
+                            yield Button("Re-Sync Library", id="btn-resync")
         
         yield MiniPlayer(id="mini-player-bar")
 
@@ -58,10 +65,14 @@ class HomeScreen(Screen):
 
         auto_container = self.query_one("#auto-playlists")
         user_container = self.query_one("#user-playlists")
+
+        auto_container.remove_children()
+        user_container.remove_children()
+        
         stamp = int(time.time())
         for pl in playlists:
             btn = Button(
-                f"  {pl['name']} ({len(pl['songs'])} songs)",
+                f"  {pl['name']} \n({len(pl['songs'])} songs)",
                 id=f"pl-{pl['id']}-{stamp}",
                 classes="playlist-btn"
             ) # Making playlist as button ;-; I'm SMART.. aren't I??
@@ -75,8 +86,10 @@ class HomeScreen(Screen):
         if not data:
             return
         dir_list = self.query_one("#dir-list", ListView)
+        dir_list.clear()
         for d in data.get("directories", []):
-            dir_list.append(ListItem(Static(f"📁 {d}")))
+            item_label = Static(f"📁 {d}", name=str(d)) # Fix for remove button previously not working
+            dir_list.append(ListItem(item_label))
 
     def on_data_table_row_selected(self, event: DataTable.RowSelected) -> None:
         if event.data_table.id == "all-songs-table":
@@ -93,17 +106,17 @@ class HomeScreen(Screen):
 
             for pl in playlists:
                 if pl["id"] == pl_id:
-                    self.app.push_screen(LibraryScreen(pl["songs"], pl["name"])) # Opens NEW AND CHANGEd library screen
+                    self.app.push_screen(LibraryScreen(pl["songs"], pl["name"], pl["id"])) # Opens NEW AND CHANGEd library screen
                     break
         
         elif event.button.id == "btn-add-dir":
             self.app.push_screen(SetupScreen())
 
-        elif event.button.id == "btn-remove-dir":
+        elif event.button.id == "btn-remove-dir": # Finally this button works ;-) . I gave alpha testing to my friend and he said this wasn't working and raised error "AttributeError: 'Static' object has no attribute 'renderable'" but now.. I realised my big mistake. And its fixed now no worriess
             dir_list = self.query_one("#dir-list", ListView)
             if dir_list.highlighted_child:
                 selected = dir_list.highlighted_child
-                path = selected.query_one(Static).renderable.plain.replace("📁 ", "").strip()
+                path = selected.query_one(Static).name
                 data = self.app.lib.readlib()
                 if data:
                     data["directories"] = [d for d in data["directories"] if d != path]
@@ -128,8 +141,50 @@ class HomeScreen(Screen):
             for pl in playlists:
                 if pl["type"] == "auto":
                     auto_container.mount(Button(
-                        f"  {pl['name']}  ({len(pl['songs'])} songs)",
+                        f"  {pl['name']}  \n({len(pl['songs'])} songs)",
                         id=f"pl-{pl['id']}-{stamp}",
                         classes="playlist-btn"
                     ))
             self.app.notify("Playlists regenerated")
+
+        elif event.button.id == "btn-create-playlist":
+            self.app.push_screen(CreatePlaylistScreen())
+
+
+# creating playlist screen :D
+class CreatePlaylistScreen(ModalScreen):
+    def compose(self) -> ComposeResult:
+        with Vertical(id="create-playlist-container"):
+            yield Input(placeholder="Playlist Name..", id="pl-name-input")
+            yield SelectionList(id="song-selection")
+
+        with Horizontal(id="create-pl-action"):
+            yield Button("Save", id="btn-save-pl")
+            yield Button("Cancel", id="btn-cancel-pl")
+
+    def on_mount(self) -> None:
+        selector = self.query_one("#song-selection", SelectionList)
+        for i, song in enumerate(self.app.songs):
+            selector.add_option(Selection(
+                f"{song['title']} - {song['artist']}",
+                i,
+                False
+            ))
+
+    def on_button_pressed(self, event: Button.Pressed) -> None:
+        if event.button.id == "btn-cancel-pl":
+            self.app.pop_screen()
+
+        elif event.button.id == "btn-save-pl":
+            name = self.query_one("#pl-name-input").value
+            selected_indices = self.query_one("#song-selection").selected
+
+            if not name or not selected_indices:
+                self.app.notify("Need a name and some songs!", severity="error")
+
+            selected_songs = [self.app.songs[i] for i in selected_indices]
+            self.app.lib.save_playlists(name, selected_songs)
+            self.app.notify(f"Playlist: '{name}' created!!", severity="information")
+            self.app.get_screen("home").load_playlists()
+            self.app.pop_screen()
+    

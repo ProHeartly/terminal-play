@@ -42,6 +42,8 @@ Button:hover {
 ====================================================================================================================================================
 */
 
+/*  */
+
 /* Setup Workspace Layout */
 
 
@@ -116,18 +118,79 @@ DataTable > .datatable--cursor {
 }
 
 /* --- PLAYLIST BUTTONS (The Creative Part) --- */
+#playlist-tab-container {
+    scrollbar-size-vertical: 0; 
+    scrollbar-size-horizontal: 0;
+    padding-left: 2;
+}
+
+.playlist-header-row {
+    height: 5;
+}
+
 .playlist-btn {
-    width: 1fr;
-    margin: 0 1;
+    height: 13;
+    width: 24;
+    margin: 1 1;
     background: transparent;
-    border: tall $alert 30%;
+    border: round $alert;
     color: $alert;
     content-align: left middle;
 }
 
+#song-selection {
+    height: 15;
+    border: round $alert;
+    background: $bg-light;
+    color: $main;
+}
+
+/* Style the checkmarks to be gold */
+SelectionList > .selection-list--button {
+    color: $gold;
+}
+
+#auto-playlists {
+    height: 15;
+    width: 100%;
+    scrollbar-size-vertical: 0; 
+    scrollbar-size-horizontal: 1;
+    scrollbar-color: $alert;
+    scrollbar-background: transparent;
+    scrollbar-color-hover: $gold;
+    scrollbar-color-active: $gold;
+    scrollbar-background-hover: $bg;
+    scrollbar-background-active: $bg;
+}
+
+#btn-regenerate {
+    background: $bg-light;
+    border: round $gold;
+    margin-left: 5;
+}
+
+#user-playlists {
+    height: 15;
+    width: 100%;
+    scrollbar-size-vertical: 0; 
+    scrollbar-size-horizontal: 1;
+    scrollbar-color: $alert;
+    scrollbar-background: transparent;
+    scrollbar-color-hover: $gold;
+    scrollbar-color-active: $gold;
+    scrollbar-background-hover: $bg;
+    scrollbar-background-active: $bg;
+}
+
+#btn-create-playlist {
+    background: $bg-light;
+    border: round $gold;
+    margin-left: 5;
+}
+
 .playlist-btn:hover {
     background: $main 10%;
-    border: tall $gold;
+    border: round $gold;
     color: $gold;
 }
 
@@ -136,22 +199,31 @@ DataTable > .datatable--cursor {
     text-style: bold;
     color: $main;
     margin: 1 0;
-    padding-left: 1;
 }
 
-#btn-regenerate, #btn-add-dir {
-    background: $main;
-    color: $bg-light;
+#btn-add-dir {
+    background: $bg-light;
+    color: white;
+    margin: 1;
+    border: round $gold;
 }
 
 #btn-remove-dir {
-    background: $alert;
-    color: $bg-light;
+    background: $bg-light;
+    color: red;
+    margin: 1;
+    border: round red;
 }
 
 #btn-resync {
-    background: $sub;
-    color: $bg-light;
+    background: $bg-light;
+    color: green;
+    margin: 1;
+    border: round;
+}
+
+#settings-scroll {
+    padding: 0 4;
 }
 
 /*
@@ -461,4 +533,38 @@ MarqueeLabel {
     text-style: bold;
     color: $bg;
     margin: 1;
+}
+
+/*
+====================================================================================================================================================
+                        LIBRARY SCREEN
+====================================================================================================================================================
+*/
+
+#playlist-header {
+    width: 100%;
+    height: 5;
+}
+
+#btn-back {
+    width: auto;      
+    min-width: 4;
+    border: none;
+    background: $bg-light;
+    margin-top: 0;
+    color: $gold;
+}
+
+#playlist-title {
+    padding-top: 1;
+    align: center middle;
+}
+
+#btn-delete-playlist {
+    width: auto;      
+    min-width: 4;
+    border: none;
+    background: $alert;
+    margin-top: 0;
+    color: $gold;
 }
