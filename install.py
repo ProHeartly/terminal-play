@@ -24,8 +24,8 @@ def run_install(): # Main installer function
     install_dir.mkdir(parents=True, exist_ok=True)
 
     print(f"Installing Terminal Play at '{install_dir}'")
-    EXE_URL = "" # Placeholder for our main.exe (i will release it first then update install.py)
-    ASSETS_URL = "" # same with this
+    EXE_URL = "https://github.com/ProHeartly/terminal-play/releases/download/v0.1.6-alpha/main.exe" # Main application
+    ASSETS_URL = "https://github.com/ProHeartly/terminal-play/releases/download/v0.1.6-alpha/assets.zip" # Assets folder
 
     try:
         print("Downloading the engine...")
@@ -35,7 +35,7 @@ def run_install(): # Main installer function
         zip_path = install_dir / "assets.zip"
         urllib.request.urlretrieve(ASSETS_URL, zip_path)
 
-        with zipfile.ZipFIle(zipfile, "r") as zip_ref:
+        with zipfile.ZipFile(zip_path, "r") as zip_ref:
             zip_ref.extractall(install_dir)
 
         os.remove(zip_path) # Clean up the zip of asset
