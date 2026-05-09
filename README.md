@@ -1,5 +1,5 @@
 # Terminal Play
-![terminal play](assets\screenshot\1.png)
+![terminal play](screenshot\1.png)
 
 **A music player for your terminal.** Build with python with textual library for those beautiful UI and pygame for playing the actual audio.
 
@@ -12,8 +12,8 @@
 
 #
 ### Some more screenshots
-![2](assets\screenshot\2.png)
-![3](assets\screenshot\3.png)
+![2](screenshot\2.png)
+![3](screenshot\3.png)
 
 
 #### First time writing README so idk what to write.. I will learn gradually (trust me)
