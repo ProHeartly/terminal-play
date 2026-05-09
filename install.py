@@ -11,12 +11,12 @@ import win32com.client
 def get_app_path(): # This will return our data folder which will be C:/Users/{your user}/AppData/Local/TerminalPlay
     return Path(os.environ["LOCALAPPDATA"]) / "TerminalPlay"
 
-def create_shortcut(target, shortcut_path): # This will create the shortcut in desktop
+def create_shortcut(target, shortcut_path, install_dir): # This will create the shortcut in desktop
     shell = win32com.client.Dispatch("WScript.Shell")
     shortcut = shell.CreateShortCut(str(shortcut_path))
     shortcut.TargetPath = str(target)
     shortcut.WorkingDirectory = str(target.parent)
-    shortcut.IconLocation = str(target)
+    shortcut.IconLocation = str(install_dir / "assets" / "icon.ico")
     shortcut.save()
 
 def run_install(): # Main installer function
@@ -42,7 +42,7 @@ def run_install(): # Main installer function
 
         print("Creating shortcut of application...")
         desktop = Path(os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop'))
-        create_shortcut(install_dir / "main.exe", desktop / "TerminalPlayer.lnk")
+        create_shortcut(install_dir / "main.exe", desktop / "TerminalPlayer.lnk", install_dir)
 
         print("TERMINAL PLAYER IS INSTALLED!!!\n\n")
         print("You can find it in your desktop..\n\n\n")
