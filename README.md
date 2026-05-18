@@ -3,6 +3,15 @@
 
 **A music player for your terminal.** Build with python with textual library for those beautiful UI and pygame for playing the actual audio.
 
+## NOTE: For non-window users, you won't be able to use compiled form so, you can clone repo then run 
+```
+pip install -r requirements.txt
+```
+## Then
+```
+python main.py
+```
+
 ## Custom Features
 * **Custom loading animation:** I made that animation in davinci then used .mov to ascii script to convert it into that beautiful animation.
 
