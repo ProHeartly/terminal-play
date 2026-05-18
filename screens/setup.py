@@ -32,7 +32,13 @@ class SetupScreen(Screen):
             with Vertical(id="browser-side"): # dont mind about the name ;-; I alr told you I don't really know what to name../
                 yield Label(" [b]1. BROWSE FOLDERS[/]", classes="setup-title") # using class instead of ID feels weird but my web dev friend suggest me to use cuz i can stack the css effect to different TITLEs
                 drives = self.get_drive()
-                yield Tabs(*[Tab(d, id=f"drive-{d[0]}") for d in drives], id="drive-tabs")
+
+                tab_list = []
+                for idx, d in enumerate(drives):
+                    clean_id = f"drive_{d[0].lower()}" if d[0].isalpha() else f"drive_root_{idx}"
+                    tab_list.append(Tab(d, id=clean_id))
+
+                yield Tabs(*tab_list, id="drive-tabs")
                 start_drive = drives[0] if drives else "/"
                 yield DirectoryTree(start_drive, id="dir-tree") # Fixed the drive issue for other os ;D
                 yield Button("SELECT", variant="primary", id="btn-add-folder")
